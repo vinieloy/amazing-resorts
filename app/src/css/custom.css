@@ -1,3 +1,7 @@
+md-dialog {
+    width: 50%;
+}
+
 .sideNav .cardUsuario {
     background-image: url(../img/building.png);
     background-position: center;

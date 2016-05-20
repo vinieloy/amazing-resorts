@@ -1,9 +1,9 @@
-(function () {
+(function() {
   'use strict';
 
   angular
     .module('loginApp')
-    .controller('loginCtrl', servicosCtrl);
+    .controller('loginCtrl', loginCtrl);
 
   loginCtrl.$inject = ['acessoService', '$window', '$mdToast'];
 
