@@ -108,9 +108,12 @@
               <div layout="column">
 
                 <div layout="row">
-                  <md-select placeholder="Selecione o morador (Dono do veículo)" ng-model="ve.formVeiculo.pessoa" md-on-open="ve.carregarPessoas()" style="min-width: 200px;" flex="50">
-                    <md-option ng-value="pessoa" ng-repeat="pessoa in ve.pessoas">{{pessoa.nome}}</md-option>
-                  </md-select>
+                  <md-input-container flex>
+                   <label>Morador (Dono do veículo)</label>
+                    <md-select ng-model="ve.formVeiculo.pessoa" md-on-open="ve.carregarPessoas()" style="min-width: 200px;" flex="50">
+                      <md-option ng-value="pessoa" ng-repeat="pessoa in ve.pessoas">{{pessoa.nome}}</md-option>
+                    </md-select>
+                  </md-input-container>
                 </div>
 
                 <div layout="row">
