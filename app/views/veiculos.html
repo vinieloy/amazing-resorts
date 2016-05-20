@@ -1,5 +1,5 @@
 <md-content>
-  <md-tabs md-dynamic-height md-stretch-tabs="always" md-whiteframe="4" md-selected="im.selectedIndex" class="md-primary">
+  <md-tabs md-dynamic-height md-stretch-tabs="always" md-whiteframe="4" md-selected="ve.selectedIndex" class="md-primary">
     <md-tab label="Buscar" md-whiteframe="4">
       <md-content layout-padding>
         <md-card md-whiteframe="2">
@@ -28,7 +28,7 @@
 
             <!--tabela-->
             <md-table-container>
-              <table md-table md-progress="im.loading">
+              <table md-table md-progress="ve.loading">
                 <thead class="table" md-head md-order="ordenacao">
                   <tr md-row>
                     <th md-column md-order-by="id">#</th>
@@ -41,13 +41,13 @@
                 </thead>
                 
                 <tbody md-body>
-                  <tr md-row ng-repeat="imovel in im.imoveis | orderBy: ordenacao | limitTo: im.option.limite: (im.option.paginas- 1) * im.option.limite | filter: busca ">
-                    <td md-cell>{{imovel.id}}</td>
-                    <td md-cell>{{imovel.endereco}}</td>
-                    <td md-cell>{{imovel.numero}}</td>
-                    <td md-cell>{{imovel.apartamento}}</td>
+                  <tr md-row ng-repeat="veiculo in ve.veiculos | orderBy: ordenacao | limitTo: ve.option.limite: (ve.option.paginas- 1) * ve.option.limite | filter: busca ">
+                    <td md-cell>{{veiculo.id}}</td>
+                    <td md-cell>{{veiculo.endereco}}</td>
+                    <td md-cell>{{veiculo.numero}}</td>
+                    <td md-cell>{{veiculo.apartamento}}</td>
                     <td md-cell>
-                      <md-checkbox ng-checked="imovel.ativo"></md-checkbox>
+                      <md-checkbox ng-checked="veiculo.ativo"></md-checkbox>
                     </td>
                     <td md-cell>
                       <md-menu>
@@ -58,7 +58,7 @@
                         </md-button>
                         <md-menu-content width=5>
                           <md-menu-item>
-                            <md-button layout-fill ng-click="im.editar($event, imovel)">
+                            <md-button layout-fill ng-click="ve.editar($event, veiculo)">
                               <md-icon>
                                 <i class="material-icons">mode_edit</i>
                               </md-icon>
@@ -66,7 +66,7 @@
                             </md-button>
                           </md-menu-item>
                           <md-menu-item>
-                            <md-button layout-fill class="md-raised md-warn" ng-click="im.excluir($event, imovel)">
+                            <md-button layout-fill class="md-raised md-warn" ng-click="ve.excluir($event, veiculo)">
                               <md-icon>
                                 <i class="material-icons">delete_forever</i>
                               </md-icon>
@@ -79,7 +79,7 @@
                   </tr>
                 </tbody>
               </table>
-              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="im.option.limite" md-limit-options="[5, 10, 15] " md-page="im.option.paginas" md-total="{{im.imoveis.length}} " md-page-select>
+              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="ve.option.limite" md-limit-options="[5, 10, 15] " md-page="ve.option.paginas" md-total="{{ve.veiculos.length}} " md-page-select>
               </md-table-pagination>
             </md-table-container>
 
@@ -108,43 +108,43 @@
                 <div layout="row">
                   <md-input-container flex>
                     <label>Morador (Dono do veículo)</label>
-                    <input type="text" ng-model="im.formImovel.quadra">
+                    <input type="text" ng-model="ve.formVeiculo.quadra">
                   </md-input-container>
                 </div>
 
                 <div layout="row">
                   <md-input-container flex>
                     <label>Placa</label>
-                    <input type="text" ng-model="im.formImovel.apartamento">
+                    <input type="text" ng-model="ve.formVeiculo.apartamento">
                   </md-input-container>
 
                   <md-input-container flex>
                     <label>Marca</label>
-                    <input type="text" ng-model="im.formImovel.numero">
+                    <input type="text" ng-model="ve.formVeiculo.numero">
                   </md-input-container>
                 </div>
 
                 <div layout="row">
                   <md-input-container flex>
                     <label>Modelo</label>
-                    <input type="text" ng-model="im.formImovel.cep" required>
+                    <input type="text" ng-model="ve.formVeiculo.cep" required>
                   </md-input-container>
 
                   <md-input-container flex>
                     <label>Cor</label>
-                    <input type="text" ng-model="im.formImovel.bloco">
+                    <input type="text" ng-model="ve.formVeiculo.bloco">
                   </md-input-container>
                 </div>
 
-                <md-checkbox ng-model="im.formImovel.ativo">Ativo</md-checkbox>
+                <md-checkbox ng-model="ve.formVeiculo.ativo">Ativo</md-checkbox>
               </div>
             </md-card-content>
           </md-card>
 
           <div layout="row" layout-align="end end">
-            <md-button class="md-raised" ng-click="im.limpar($event)">Limpar</md-button>
-            <md-button class="md-raised md-warn" ng-disabled="im.formImovel.id==null" ng-click="im.excluir($event, im.formImovel)">Excluir</md-button>
-            <md-button class="md-raised md-primary" ng-disabled="!formImovel.$valid" ng-click="im.salvar($event, im.formImovel)">Salvar</md-button>
+            <md-button class="md-raised" ng-click="ve.limpar($event)">Limpar</md-button>
+            <md-button class="md-raised md-warn" ng-disabled="ve.formVeiculo.id==null" ng-click="ve.excluir($event, ve.formVeiculo)">Excluir</md-button>
+            <md-button class="md-raised md-primary" ng-disabled="!formVeiculo.$valid" ng-click="ve.salvar($event, ve.formVeiculo)">Salvar</md-button>
           </div>
         </form>
 
