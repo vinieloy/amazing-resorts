@@ -20,6 +20,8 @@ app.constant("Api", {
   "DesativarImovel": "http://amazingresort.somee.com/api/Imovel/DesativarImovel/",
   "Veiculo": "http://amazingresort.somee.com/api/Veiculo/",
   "DesativarVeiculo": "http://amazingresort.somee.com/api/Veiculo/DesativarImovel/",
+  "Servico": "http://amazingresort.somee.com/api/Servico/",
+  "DesativarServico": "http://amazingresort.somee.com/api/Servico/DesativarServico/",
   "Assembleia": "http://amazingresort.somee.com/api/Assembleia/",
   "DesativarAssembleia": "http://amazingresort.somee.com/api/Assembleia/DesativarAssembleia/",
   "ParticipantesAssembleia": "http://amazingresort.somee.com/api/Assembleia/GetParticipantes/",

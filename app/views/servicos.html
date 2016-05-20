@@ -1,1 +1,144 @@
-servicos
+<md-content>
+  <md-tabs md-dynamic-height md-stretch-tabs="always" md-whiteframe="4" md-selected="se.selectedIndex" class="md-primary">
+    <md-tab label="Buscar" md-whiteframe="4">
+      <md-content layout-padding>
+        <md-card md-whiteframe="2">
+
+          <md-card-title>
+            <!--busca-->
+            <md-input-container md-no-float flex>
+              <md-icon>
+                <i class="material-icons">search</i>
+              </md-icon>
+              <input ng-model="busca" type="text" placeholder="Buscar serviço...">
+            </md-input-container>
+
+            <!--recarrega a tabela-->
+            <md-button class="md-icon-button" ng-click="se.recarregar()">
+              <md-tooltip md-direction="left">
+                Atualizar
+              </md-tooltip>
+              <md-icon>
+                <i class="material-icons">refresh</i>
+              </md-icon>
+            </md-button>
+          </md-card-title>
+
+          <md-card-content>
+
+            <!--tabela-->
+            <md-table-container>
+              <table md-table md-progress="se.loading">
+                <thead class="table" md-head md-order="ordenacao">
+                  <tr md-row>
+                    <th md-column md-order-by="id">#</th>
+                    <th md-column md-order-by="pessoa.nome">Prestador</th>
+                    <th md-column md-order-by="marca">Serviço</th>
+                    <th md-column md-order-by="placa">Descrição</th>
+                    <th md-column md-order-by="ativo">Ativo</th>
+                    <th md-column></th>
+                  </tr>
+                </thead>
+
+                <tbody md-body>
+                  <tr md-row ng-repeat="servico in se.servico | orderBy: ordenacao | limitTo: se.option.limite: (se.option.paginas- 1) * se.option.limite | filter: busca ">
+
+                    {{servico}}
+                    <td md-cell>{{servico.id}}</td>
+                    <td md-cell>{{servico.pessoa.nome}}</td>
+                    <td md-cell>{{servico.servico}}</td>
+                    <td md-cell>{{servico.descricao}}</td>
+                    <td md-cell>
+                      <md-checkbox ng-checked="veiculo.ativo"></md-checkbox>
+                    </td>
+                    <td md-cell>
+                      <md-menu>
+                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                          <md-icon>
+                            <i class="material-icons">settings</i>
+                          </md-icon>
+                        </md-button>
+                        <md-menu-content width=5>
+                          <md-menu-item>
+                            <md-button layout-fill ng-click="se.editar($event, veiculo)">
+                              <md-icon>
+                                <i class="material-icons">mode_edit</i>
+                              </md-icon>
+                              Edição
+                            </md-button>
+                          </md-menu-item>
+                          <md-menu-item>
+                            <md-button layout-fill class="md-raised md-warn" ng-click="se.excluir($event, veiculo)">
+                              <md-icon>
+                                <i class="material-icons">delete_forever</i>
+                              </md-icon>
+                              Excluir
+                            </md-button>
+                          </md-menu-item>
+                        </md-menu-content>
+                      </md-menu>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="se.option.limite" md-limit-options="[5, 10, 15] " md-page="se.option.paginas" md-total="{{se.servicos.length}} " md-page-select>
+              </md-table-pagination>
+            </md-table-container>
+
+          </md-card-content>
+        </md-card>
+      </md-content>
+    </md-tab>
+
+    <md-tab label="Cadastro / Edição ">
+      <md-content layout-padding>
+
+        <!--formulário-->
+        <form name="formServico" class="formServico" novalidate>
+
+          <!--veiculo-->
+          <md-card md-whiteframe="2">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Serviço</span>
+              </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+              <div layout="column">
+
+                <div layout="row">
+                  <md-input-container flex>
+                    <label>Prestador de serviço</label>
+                    <input type="text" ng-model="se.formServico.pessoa.nome" required>
+                  </md-input-container>
+
+                  <md-input-container flex>
+                    <label>Serviço prestado</label>
+                    <input type="text" ng-model="se.formServico.servico" required>
+                  </md-input-container>
+                </div>
+
+                <div layout="row">
+                  <md-input-container class="md-block" flex>
+                    <label>Descrição do serviço</label>
+                    <textarea ng-model="se.formServico.descricao" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
+                  </md-input-container>
+                </div>
+
+                <md-checkbox ng-model="se.formServico.ativo">Ativo</md-checkbox>
+              </div>
+            </md-card-content>
+          </md-card>
+
+          <div layout="row" layout-align="end end">
+            <md-button class="md-raised" ng-click="se.limpar($event)">Limpar</md-button>
+            <md-button class="md-raised md-warn" ng-disabled="se.formServico.id==null" ng-click="se.excluir($event, se.formServico)">Excluir</md-button>
+            <md-button class="md-raised md-primary" ng-disabled="!formServico.$valid" ng-click="se.salvar($event, se.formServico)">Salvar</md-button>
+          </div>
+        </form>
+
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>
