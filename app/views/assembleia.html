@@ -95,30 +95,43 @@
       </md-content>
     </md-tab>
 
-    <md-tab label="Cadastro / Edição">
+    <md-tab label="Cadastro/Edição Assembléia">
       <md-content layout-padding>
 
         <!--formulário-->
         <form name="formAssembleia" class="formAssembleia" novalidate>
           <md-card md-whiteframe="2">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Assembléia</span>
+              </md-card-title-text>
+            </md-card-title>
+
             <md-card-content>
               <div layout="column">
+                <div layout-gt-xs="row">
+                  <md-datepicker ng-model="assem.formAssembleia.data" md-placeholder="Data">
+                  </md-datepicker>
 
-                <div layout="row">
-                  <md-input-container flex="20">
-                    <label>Data</label>
-                    <input ng-model="assem.formAssembleia.data" required>
-                  </md-input-container>
-                  <md-checkbox ng-model="assem.formAssembleia.ativo" flex="50">Ativo</md-checkbox>
-                </div>
-
-                <div layout="row">
                   <md-input-container flex>
-                    <label>Descrição</label>
-                    <input ng-model="assem.formAssembleia.descricao" required>
+                    <label>Hora de início</label>
+                    <input type="number" ng-model="assem.formAssemblei.horaInicio">
+                  </md-input-container>
+
+                  <md-input-container flex>
+                    <label>Hora de término</label>
+                    <input type="number" ng-model="assem.formAssemblei.horaFim">
                   </md-input-container>
                 </div>
 
+                <div layout="row">
+                  <md-input-container class="md-block" flex>
+                    <label>Descrição</label>
+                    <textarea ng-model="assem.formAssembleia.descricao" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
+                  </md-input-container>
+                </div>
+
+                <md-checkbox ng-model="assem.formAssembleia.ativo">Ativo</md-checkbox>
               </div>
             </md-card-content>
           </md-card>
@@ -132,19 +145,79 @@
 
       </md-content>
     </md-tab>
+
+
+    <md-tab label="Cadastro/Edição Ata">
+      <md-content layout-padding>
+
+        <!--formulário-->
+        <form name="formAssembleia" class="formAssembleia" novalidate>
+          <md-card md-whiteframe="2">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Ata</span>
+              </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+              <div layout="column">
+                <!--
+                <div layout="row">
+                  <md-datepicker ng-model="assem.formAssembleia.data" md-placeholder="Data"  flex>
+                  </md-datepicker>
+                </div>
+-->
+
+                <div layout="row">
+                  <md-input-container class="md-block" flex>
+                    <label>Descrição</label>
+                    <textarea ng-model="assem.formAssembleia.descricao" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
+                  </md-input-container>
+                </div>
+
+                <md-checkbox ng-model="assem.formAssembleia.ativo">Ativo</md-checkbox>
+              </div>
+            </md-card-content>
+          </md-card>
+
+          <div layout="row" layout-align="end end">
+            <md-button class="md-raised" ng-click="assem.limpar($event)">Limpar</md-button>
+            <md-button class="md-raised md-warn" ng-disabled="assem.formAssembleia.id==null" ng-click="assem.excluir($event, assem.formAssembleia)">Excluir</md-button>
+            <md-button class="md-raised md-primary" ng-disabled="!formAssembleia.$valid" ng-click="assem.salvar($event, assem.formAssembleia)">Salvar</md-button>
+          </div>
+        </form>
+
+      </md-content>
+    </md-tab>
+
+
     <md-tab label="Inscrição ">
       <md-content layout-padding>
-        <div layout="flex ">
-          <!--busca-->
-          <md-input-container md-no-float flex>
-            <md-icon>
-              <i class="material-icons ">search</i>
-            </md-icon>
-            <input ng-model="buscaParticipantes " type="text " placeholder="Buscar... ">
-          </md-input-container>
-        </div>
 
-        <!--<md-list>
+        <md-card md-whiteframe="2">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Inscrições</span>
+            </md-card-title-text>
+          </md-card-title>
+
+          <md-card-content>
+
+            <div layout="row">
+              <md-input-container md-no-float flex>
+                <md-icon>
+                  <i class="material-icons ">search</i>
+                </md-icon>
+                <input ng-model="buscaParticipantes " type="text " placeholder="Buscar... ">
+              </md-input-container>
+            </div>
+
+          </md-card-content>
+        </md-card>
+
+
+
+        <md-list>
                     <md-subheader class="md-no-sticky ">Selecione os participantes</md-subheader>
                     <md-list-item ng-repeat="assembleia in assem.assembleias | filter: buscaParticipantes ">
                         <md-card>
@@ -154,7 +227,7 @@
                             </md-card-title>
                         </md-card>
                     </md-list-item>
-                </md-list>-->
+                </md-list>
       </md-content>
     </md-tab>
   </md-tabs>

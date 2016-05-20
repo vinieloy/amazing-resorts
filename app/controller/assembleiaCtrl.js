@@ -5,9 +5,9 @@
     .module('app')
     .controller('assembleiaCtrl', assembleiaCtrl);
 
-  assembleiaCtrl.$inject = ['$mdToast', '$mdMedia', '$mdDialog', 'assembleiaService', '$timeout'];
+  assembleiaCtrl.$inject = ['$mdToast', '$mdMedia', '$mdDialog', 'assembleiaService', '$timeout', '$element'];
 
-  function assembleiaCtrl($mdToast, $mdMedia, $mdDialog, assembleiaService, $timeout) {
+  function assembleiaCtrl($mdToast, $mdMedia, $mdDialog, assembleiaService, $timeout, $element) {
 
     var assem = this;
     var _selectedAssembleia = null;
@@ -97,6 +97,20 @@
         .hideDelay(3000)
       );
     }
+
+
+    assem.vegetables = ['Corn', 'Onions', 'Kale', 'Arugula', 'Peas', 'Zucchini'];
+    assem.searchTerm;
+    assem.clearSearchTerm = function () {
+      assem.searchTerm = '';
+    };
+    // The md-select directive eats keydown events for some quick select
+    // logic. Since we have a search input here, we don't need that logic.
+    $element.find('input.demo-header-searchbox').on('keydown', function (ev) {
+      ev.stopPropagation();
+    });
+
+
   }
 })();
 
