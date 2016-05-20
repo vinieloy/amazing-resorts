@@ -1,0 +1,21 @@
+<md-content ng-controller="forumCtrl as fr">
+
+    <md-list flex layout-padding>
+        <md-list-item class="md-3-line" ng-repeat="forum in fr.forum" ng-click="null">
+            <div class="md-list-item-text" layout="column">
+                <div layout="row">
+                    <div layout="column" flex>
+                        <h3>{{forum.topico}}</h3>
+                        <h4>{{forum.descricao}}</h4>
+                    </div>
+                    <div layout="column" layout-align="end start">
+                        <p>Ultima postagem: {{forum.dataUltimoPost}}</p>
+                        <p>Postagens: {{forum.qtdPosts}}</p>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+
+</md-content>

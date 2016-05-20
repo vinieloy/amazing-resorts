@@ -1,0 +1,34 @@
+<md-dialog ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Participantes</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="md.fechar()">
+                <i class="material-icons">clear</i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+        <div>
+
+            <md-input-container md-no-float>
+                <md-icon>
+                    <i class="material-icons">search</i>
+                </md-icon>
+                <input ng-model="busca" type="text" placeholder="Buscar...">
+            </md-input-container>
+
+            <md-list flex>
+                <md-subheader class="md-no-sticky">Total de inscritos: {{md.participantes.length}}</md-subheader>
+                <md-list-item class="md-3-line" ng-repeat="participantes in md.participantes | filter: busca" ng-click="null">
+                    <img ng-src="{{participantes.img}}" class="md-avatar" alt="{{participantes.nome}}" />
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{participantes.nome}}</h3>
+                        <h4>{{participantes.residencia}}</h4>
+                    </div>
+                </md-list-item>
+            </md-list>
+
+        </div>
+    </md-dialog-content>
+</md-dialog>

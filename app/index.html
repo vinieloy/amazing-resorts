@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amazing Resort</title>
+
+  <link rel="stylesheet" href="src/css/angular-material.css">
+  <link rel="stylesheet" href="src/css/md-data-table.min.css" />
+  <link rel="stylesheet" href="src/css/custom.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn t work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body ng-app="app" ng-cloak layout="row" ng-controller="mainCtrl as mn">
+
+  <div ng-controller="menuCtrl as menu" layout="row" class="sideNav">
+    <md-sidenav class="md-sidenav-left" md-whiteframe="16" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-disable-backdrop>
+      <!--imagem usuario-->
+      <md-toolbar class="cardUsuario md-tall">
+        <div layout-margin layout layout-align="start end">
+          <div layout="column">
+            <img src="http://img.lum.dolimg.com/v1/images/Darth-Vader_6bda9114.jpeg?region=0%2C23%2C1400%2C785&width=768" class="avatar" alt="avatar" />
+            <span class="card-nome">{{menu.usuario.nome}}</span>
+            <span class="card-email">{{menu.usuario.email}}</span>
+          </div>
+        </div>
+      </md-toolbar>
+      <!--FIM imagem usuario-->
+
+      <!--menu-->
+      <md-content class="main" role="navigation">
+        <md-list ng-repeat="link in menu.links" ng-if="menu.usuario.admin = true">
+          <md-list-item ui-sref="{{link.url}}" ng-click="link.combo = !link.combo">
+            <i class="material-icons">{{link.icon}}</i>
+            <span flex></span>
+            <p>{{link.nome}}</p>
+            <span flex></span>
+            <md-icon class="md-primary md-icon-button" ng-show="link.combo && link.subMenu.length > 0">
+              <i class="material-icons">{{link.combo ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i>
+            </md-icon>
+          </md-list-item>
+          <md-list-item ng-show="link.combo && link.subMenu.length > 0" ng-repeat="subMenu in link.subMenu">
+            <span flex></span>
+            <p class="md-body-2">{{subMenu.nome}}</p>
+          </md-list-item>
+      </md-content>
+      <!--FIM menu-->
+    </md-sidenav>
+  </div>
+
+  <div layout="column" flex ng-controller="menuCtrl as menu">
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="menu.abrir()">
+          <md-icon>
+            <i class="material-icons">menu</i>
+          </md-icon>
+        </md-button>
+        <h2>
+                    <!--{{menu.url}}-->
+                </h2>
+        <span flex></span>
+        <md-button class="md-fab md-mini" ng-click="menu.logout()">
+          <md-icon>
+            <i class="material-icons">power_settings_new</i>
+          </md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-content flex>
+      <div ui-view="defaultView"></div>
+    </md-content>
+  </div>
+
+  <!--angular-->
+  <script src="src/js/angular.min.js"></script>
+  <script src="src/js/angular-ui-router.min.js"></script>
+  <script src="src/js/angular-aria.min.js"></script>
+  <script src="src/js/angular-animate.min.js"></script>
+  <script src="src/js/angular-messages.min.js"></script>
+  <script src="src/js/angular-resource.min.js"></script>
+  <script src="src/js/angular-material.min.js"></script>
+  <script src="src/js/md-data-table.min.js"></script>
+
+  <!--apps-->
+  <script src="modules/app.js"></script>
+  <script src="modules/route.js"></script>
+
+  <!--services-->
+  <!--  <script src="services/acessoService.js"></script>-->
+  <script src="services/forumService.js"></script>
+  <script src="services/assembleiaService.js"></script>
+  <script src="services/imovelService.js"></script>
+  <script src="services/pessoaService.js"></script>
+  <script src="services/usuarioService.js"></script>
+
+  <!--controllers-->
+  <!--  <script src="controller/loginCtrl.js"></script>-->
+  <script src="controller/mainCtrl.js"></script>
+  <script src="controller/menuCtrl.js"></script>
+  <script src="controller/forumCtrl.js"></script>
+  <script src="controller/assembleiaCtrl.js"></script>
+  <script src="controller/boletosCtrl.js"></script>
+  <script src="controller/relatoriosCtrl.js"></script>
+  <script src="controller/imovelCtrl.js"></script>
+  <script src="controller/pessoaCtrl.js"></script>
+  <script src="controller/veiculosCtrl.js"></script>
+  <script src="controller/servicosCtrl.js"></script>
+
+</body>
+
+</html>

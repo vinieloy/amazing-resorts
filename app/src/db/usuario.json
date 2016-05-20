@@ -1,0 +1,30 @@
+[{
+    "id": 1,
+    "img": "http://i0.wp.com/enviro.qualitysitework.com/wp-content/uploads/2015/02/person-img-4.jpg?fit=171%2C171",
+    "nome": "Luiz Henrique",
+    "residencia": "Apartamento 204"
+},
+  {
+    "id": 2,
+    "img": "http://www.creadev.fr/wp-content/uploads/2014/11/slider-person-img-3.jpg",
+    "nome": "Flávia Santos",
+    "residencia": "Apartamento 301"
+},
+  {
+    "id": 3,
+    "img": "http://redprivet.com/wp-content/uploads/2015/02/person-img-3.jpg",
+    "nome": "Rejane Bastos",
+    "residencia": "Apartamento 805"
+},
+  {
+    "id": 4,
+    "img": "https://www.gps-consulting.com/wp-content/uploads/2015/12/person-img-carsten-hinze.jpg",
+    "nome": "Guilherme Silva",
+    "residencia": "Apartamento 102"
+},
+  {
+    "id": 5,
+    "img": "http://www.lotusspabelem.com.br/img/imgs/esthefany.jpg",
+    "nome": "Laura Rocha",
+    "residencia": "Apartamento 506"
+}]

@@ -1,0 +1,79 @@
+.sideNav .cardUsuario {
+    background-image: url(../img/building.png);
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: white;
+}
+
+.cardUsuario .card-nome {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.010em;
+    line-height: 24px;
+    color: black;
+}
+
+.cardUsuario .card-email {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.020em;
+    color: black;
+}
+
+.cardUsuario .avatar {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    border: 5px solid rgb(250, 250, 250);
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    vertical-align: middle;
+    zoom: 0.5;
+    transform: translateZ(0);
+}
+
+.sideNav md-list-item.md-no-proxy.md-button,
+md-list-item .md-no-style.md-button {
+    margin: 0px;
+    /*color: gray;*/
+}
+
+.main {
+    min-height: calc(100vh - 245px);
+}
+
+.md-table .md-head tr th {
+    text-align: center;
+}
+
+.md-table .md-body tr td {
+    text-align: center;
+}
+
+.md-table .md-body tr:hover {
+    background-color: gainsboro;
+}
+
+md-toolbar.barra-pesquisa {
+    background-color: white;
+}
+
+md-toolbar.barra- div md-input-container input {
+    color: black;
+    margin-top: 50px;
+}
+
+.formAssembleia md-datepicker {
+    margin-top: 15px;
+}
+
+.formAssembleia md-input-container,
+md-datepicker {
+    margin-left: 5px;
+    margin-right: 5px;
+}

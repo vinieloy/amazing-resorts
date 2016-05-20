@@ -1,0 +1,16 @@
+body {
+    background: url('../img/building2.jpg');
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.tittleLogin {
+    color: white;
+}
+
+.boxLogin {
+    margin-top: 75px;
+}
