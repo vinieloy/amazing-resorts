@@ -5,9 +5,9 @@
     .module('app')
     .controller('veiculosCtrl', veiculosCtrl);
 
-  veiculosCtrl.$inject = ['$window', '$stateParams', 'veiculoService', '$mdToast', '$mdMedia', '$mdDialog', '$timeout'];
+  veiculosCtrl.$inject = ['$window', '$stateParams', 'veiculoService', 'pessoaService', '$mdToast', '$mdMedia', '$mdDialog', '$timeout'];
 
-  function veiculosCtrl($window, $stateParams, veiculoService, $mdToast, $mdMedia, $mdDialog, $timeout) {
+  function veiculosCtrl($window, $stateParams, veiculoService, pessoaService, $mdToast, $mdMedia, $mdDialog, $timeout) {
 
     var ve = this;
     var _selected = null;
@@ -17,9 +17,11 @@
     ve.editar = editar;
     ve.excluir = excluir;
     ve.limpar = limpar;
+    ve.carregarPessoas = carregarPessoas;
 
 
     // ve.veiculos = null;
+    // ve.pessoas = null;
     ve.option = {
       limite: 5,
       paginas: 1
@@ -108,6 +110,18 @@
 
     function limpar(event) {
       ve.formVeiculo = '';
+    };
+
+
+    function carregarPessoas() {
+      // Use timeout to simulate a 650ms request.
+      return $timeout(function () {
+        pessoaService.getAllMoradores().then(success, error);
+
+        function success(response) {
+          ve.pessoas = response.data;
+        };
+      }, 650);
     };
 
 
