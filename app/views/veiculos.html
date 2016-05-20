@@ -1,1 +1,154 @@
-veiculos
+<md-content>
+  <md-tabs md-dynamic-height md-stretch-tabs="always" md-whiteframe="4" md-selected="im.selectedIndex" class="md-primary">
+    <md-tab label="Buscar" md-whiteframe="4">
+      <md-content layout-padding>
+        <md-card md-whiteframe="2">
+
+          <md-card-title>
+            <!--busca-->
+            <md-input-container md-no-float flex>
+              <md-icon>
+                <i class="material-icons">search</i>
+              </md-icon>
+              <input ng-model="busca" type="text" placeholder="Buscar veículo...">
+            </md-input-container>
+
+            <!--recarrega a tabela-->
+            <md-button class="md-icon-button" ng-click="ve.recarregar()">
+              <md-tooltip md-direction="left">
+                Atualizar
+              </md-tooltip>
+              <md-icon>
+                <i class="material-icons">refresh</i>
+              </md-icon>
+            </md-button>
+          </md-card-title>
+
+          <md-card-content>
+
+            <!--tabela-->
+            <md-table-container>
+              <table md-table md-progress="im.loading">
+                <thead class="table" md-head md-order="ordenacao">
+                  <tr md-row>
+                    <th md-column md-order-by="id">#</th>
+                    <th md-column md-order-by="endereco">Morador</th>
+                    <th md-column md-order-by="numero">Marca</th>
+                    <th md-column md-order-by="apartamento">Placa</th>
+                    <th md-column md-order-by="ativo">Ativo</th>
+                    <th md-column></th>
+                  </tr>
+                </thead>
+                
+                <tbody md-body>
+                  <tr md-row ng-repeat="imovel in im.imoveis | orderBy: ordenacao | limitTo: im.option.limite: (im.option.paginas- 1) * im.option.limite | filter: busca ">
+                    <td md-cell>{{imovel.id}}</td>
+                    <td md-cell>{{imovel.endereco}}</td>
+                    <td md-cell>{{imovel.numero}}</td>
+                    <td md-cell>{{imovel.apartamento}}</td>
+                    <td md-cell>
+                      <md-checkbox ng-checked="imovel.ativo"></md-checkbox>
+                    </td>
+                    <td md-cell>
+                      <md-menu>
+                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                          <md-icon>
+                            <i class="material-icons">settings</i>
+                          </md-icon>
+                        </md-button>
+                        <md-menu-content width=5>
+                          <md-menu-item>
+                            <md-button layout-fill ng-click="im.editar($event, imovel)">
+                              <md-icon>
+                                <i class="material-icons">mode_edit</i>
+                              </md-icon>
+                              Edição
+                            </md-button>
+                          </md-menu-item>
+                          <md-menu-item>
+                            <md-button layout-fill class="md-raised md-warn" ng-click="im.excluir($event, imovel)">
+                              <md-icon>
+                                <i class="material-icons">delete_forever</i>
+                              </md-icon>
+                              Excluir
+                            </md-button>
+                          </md-menu-item>
+                        </md-menu-content>
+                      </md-menu>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="im.option.limite" md-limit-options="[5, 10, 15] " md-page="im.option.paginas" md-total="{{im.imoveis.length}} " md-page-select>
+              </md-table-pagination>
+            </md-table-container>
+
+          </md-card-content>
+        </md-card>
+      </md-content>
+    </md-tab>
+
+    <md-tab label="Cadastro / Edição ">
+      <md-content layout-padding>
+
+        <!--formulário-->
+        <form name="formVeiculo" class="formVeiculo" novalidate>
+
+          <!--veiculo-->
+          <md-card md-whiteframe="2">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Veículo</span>
+              </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+              <div layout="column">
+
+                <div layout="row">
+                  <md-input-container flex>
+                    <label>Morador (Dono do veículo)</label>
+                    <input type="text" ng-model="im.formImovel.quadra">
+                  </md-input-container>
+                </div>
+
+                <div layout="row">
+                  <md-input-container flex>
+                    <label>Placa</label>
+                    <input type="text" ng-model="im.formImovel.apartamento">
+                  </md-input-container>
+
+                  <md-input-container flex>
+                    <label>Marca</label>
+                    <input type="text" ng-model="im.formImovel.numero">
+                  </md-input-container>
+                </div>
+
+                <div layout="row">
+                  <md-input-container flex>
+                    <label>Modelo</label>
+                    <input type="text" ng-model="im.formImovel.cep" required>
+                  </md-input-container>
+
+                  <md-input-container flex>
+                    <label>Cor</label>
+                    <input type="text" ng-model="im.formImovel.bloco">
+                  </md-input-container>
+                </div>
+
+                <md-checkbox ng-model="im.formImovel.ativo">Ativo</md-checkbox>
+              </div>
+            </md-card-content>
+          </md-card>
+
+          <div layout="row" layout-align="end end">
+            <md-button class="md-raised" ng-click="im.limpar($event)">Limpar</md-button>
+            <md-button class="md-raised md-warn" ng-disabled="im.formImovel.id==null" ng-click="im.excluir($event, im.formImovel)">Excluir</md-button>
+            <md-button class="md-raised md-primary" ng-disabled="!formImovel.$valid" ng-click="im.salvar($event, im.formImovel)">Salvar</md-button>
+          </div>
+        </form>
+
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>
