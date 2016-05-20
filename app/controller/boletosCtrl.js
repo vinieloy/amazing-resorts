@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -12,6 +12,8 @@
   function boletosCtrl($window, $mdDialog, $mdMedia) {
 
     var bo = this;
+
+    bo.geraBoleto = geraBoleto;
 
     bo.boletoMeses = [{
       data: '05/01/2016',
@@ -51,9 +53,10 @@
       valor: 'R$ 196,10'
     }]
 
-    bo.geraBoleto = function(event, boleto) {
 
-      var useFullScreen = ($mdMedia('sm') || $mdMedia('md')) && $scope.customFullscreen;
+    function geraBoleto(event, boleto) {
+
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('md')) && bo.customFullscreen;
       $mdDialog.show({
         controller: 'boletosDialogCtrl',
         controllerAs: 'boDiag',
@@ -78,7 +81,7 @@
     boDiag.boleto = boletoInfo;
     boDiag.usuario = usuario;
 
-    boDiag.cancel = function() {
+    boDiag.cancel = function () {
       $mdDialog.hide();
     }
   }

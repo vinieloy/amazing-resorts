@@ -1,6 +1,6 @@
 <md-content ng-controller="boletosCtrl as bo">
     <div layout="row" layout-padding>
-        <md-list flex="50">
+        <md-list flex>
             <md-list-item ng-repeat="boleto in bo.boletoMeses">
                 <p>{{ boleto.data }} - {{ boleto.valor }}</p>
                 <md-button class="md-fab md-mini md-secondary" ng-click="bo.geraBoleto($event, boleto)">
