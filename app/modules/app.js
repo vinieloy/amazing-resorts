@@ -12,22 +12,46 @@ app.config(function name($mdThemingProvider) {
 
 app.constant("Api", {
   "url": "http://amazingresort.somee.com/api/",
+  
   "Usuario": "http://amazingresort.somee.com/api/Usuario/",
-  "DesativarUsuario": "http://amazingresort.somee.com/api/Usuario/DesativarPessoa/",
+  "ExcluirUsuario": "http://amazingresort.somee.com/api/Usuario/ExcluirPessoa/",
+  
   "Funcionario": "http://amazingresort.somee.com/api/Funcionario/",
+  
   "Morador": "http://amazingresort.somee.com/api/Morador/",
   "CriarMorador": "http://amazingresort.somee.com/api/Morador/CriarMorador",
+  
   "Imovel": "http://amazingresort.somee.com/api/Imovel/",
   "CriarImovel": "http://amazingresort.somee.com/api/Imovel/CriarImovel/",
-  "DesativarImovel": "http://amazingresort.somee.com/api/Imovel/DesativarImovel/",
+  "ExcluirImovel": "http://amazingresort.somee.com/api/Imovel/ExcluirImovel/",
+  
   "Veiculo": "http://amazingresort.somee.com/api/Veiculo/",
   "CriarVeiculo": "http://amazingresort.somee.com/api/Veiculo/CriarVeiculo/",
-  "DesativarVeiculo": "http://amazingresort.somee.com/api/Veiculo/DesativarVeiculo/",
+  "ExcluirVeiculo": "http://amazingresort.somee.com/api/Veiculo/ExcluirVeiculo/",
+  
   "Servico": "http://amazingresort.somee.com/api/Servico/",
   "CriarServico": "http://amazingresort.somee.com/api/Servico/CriarServico/",
-  "DesativarServico": "http://amazingresort.somee.com/api/Servico/DesativarServico/",
+  "ExcluirServico": "http://amazingresort.somee.com/api/Servico/ExcluirServico/",
+  
   "Assembleia": "http://amazingresort.somee.com/api/Assembleia/",
   "CriarAssembleia": "http://amazingresort.somee.com/api/Assembleia/CriarAssembleia/",  
-  "DesativarAssembleia": "http://amazingresort.somee.com/api/Assembleia/DesativarAssembleia/",
-  "ParticipantesAssembleia": "http://amazingresort.somee.com/api/Assembleia/GetParticipantes/",
+  "ExcluirAssembleia": "http://amazingresort.somee.com/api/Assembleia/ExcluirAssembleia/",
+  
+  "Ata": "http://amazingresort.somee.com/api/Ata/",
+  "CriarAta": "http://amazingresort.somee.com/api/Ata/CriarAta/",  
+  "ExcluirAta": "http://amazingresort.somee.com/api/Ata/ExcluirAta/",
+  
+  "AtaParticipante": "http://amazingresort.somee.com/api/AtaParticipante/",
+  "CriarAtaParticipante": "http://amazingresort.somee.com/api/AtaParticipante/CriarAtaParticipante/",  
+  "ExcluirAtaParticipante": "http://amazingresort.somee.com/api/AtaParticipante/ExcluirAtaParticipante/",
+  
+  "Topico": "http://amazingresort.somee.com/api/Topico/",
+  "CriarTopico": "http://amazingresort.somee.com/api/Topico/CriarTopico/",  
+  "ExcluirTopico": "http://amazingresort.somee.com/api/Topico/ExcluirTopico/",
+  
+  "Comentario": "http://amazingresort.somee.com/api/Comentario/",
+  "CriarComentario": "http://amazingresort.somee.com/api/Comentario/CriarComentario/",  
+  "ExcluirComentario": "http://amazingresort.somee.com/api/Comentario/ExcluirComentario/",
+  
+  
 });
