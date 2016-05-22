@@ -28,14 +28,18 @@
   <div ng-controller="menuCtrl as menu" layout="row" class="sideNav">
     <md-sidenav class="md-sidenav-left" md-whiteframe="16" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-disable-backdrop>
       <!--imagem usuario-->
-      <md-toolbar class="cardUsuario md-tall">
-        <div layout-margin layout layout-align="start end">
-          <div layout="column">
+      <!--      <md-toolbar class="cardUsuario md-tall">-->
+      <md-toolbar class="cardUsuario">
+        <md-list>
+          <md-list-item class="md-2-line">
             <img src="http://img.lum.dolimg.com/v1/images/Darth-Vader_6bda9114.jpeg?region=0%2C23%2C1400%2C785&width=768" class="avatar" alt="avatar" />
-            <span class="card-nome">{{menu.usuario.nome}}</span>
-            <span class="card-email">{{menu.usuario.email}}</span>
-          </div>
-        </div>
+            <div class="md-list-item-text">
+              <h3 class="card-nome">Vinicius Eloy {{menu.usuario.nome}}</h3>
+              <p class="card-email">vinicius.eloy@medgrupo.com.br {{menu.usuario.email}}</p>
+            </div>
+            <!--<md-icon class="md-icon-button material-icons md-primary">menu</md-icon>-->
+          </md-list-item>
+        </md-list>
       </md-toolbar>
       <!--FIM imagem usuario-->
 
