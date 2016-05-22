@@ -14,12 +14,25 @@
 
     im.imoveis = null;
 
+    im.recarregar = recarregar;
+    im.salvar = salvar;
+    im.editar = editar;
+    im.excluir = excluir;
+    im.limpar = limpar;
+
     im.option = {
       limite: 5,
       paginas: 1
     };
 
-    getImoveis();
+
+    init();
+
+
+    function init() {
+      getImoveis();
+    }
+
 
     function getImoveis() {
       imovelService.getAll().then(success, error);
@@ -29,20 +42,20 @@
       };
     };
 
-    im.recarregar = function () {
+    function recarregar() {
       im.imoveis = null;
       im.loading = $timeout(function () {
         getImoveis();
       }, 1000);
     };
 
-    im.salvar = function (event, imovel) {
+    function salvar(event, imovel) {
 
       imovelService.salvarImovel(imovel).then(success, error);
 
       function success(response) {
-        im.formImovel = null;
         getImoveis();
+        im.formImovel = null;
         im.selectedIndex = 0;
 
         $mdToast.show(
@@ -54,7 +67,7 @@
       }
     };
 
-    im.editar = function (event, imovel) {
+    function editar(event, imovel) {
       im.formImovel = null;
       _selected = imovel;
       im.formImovel = _selected;
@@ -62,7 +75,7 @@
 
     };
 
-    im.excluir = function (event, imovel) {
+    function excluir(event, imovel) {
 
       var confirm = $mdDialog.confirm()
         .title('Excluir ' + imovel.endereco + ' ?')
@@ -91,7 +104,7 @@
       }
     };
 
-    im.limpar = function (event) {
+    function limpar(event) {
       im.formImovel = null;
     };
 

@@ -23,7 +23,7 @@
     }
 
     function salvarImovel(imovel) {
-      return $http.post(Api.Imovel, JSON.stringify(imovel))
+      return $http.post(Api.CriarImovel, JSON.stringify(imovel))
         .success(success)
         .error(error);
     }

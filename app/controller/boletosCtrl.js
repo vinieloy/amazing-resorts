@@ -81,6 +81,29 @@
     boDiag.boleto = boletoInfo;
     boDiag.usuario = usuario;
 
+
+    boDiag.imprimirBoleto = function () {
+      //      var elem = angular.element(document.querySelector('#pintThis'));
+      //      var domClone = elem.clone();
+      //
+      //      var printSection = angular.element(document.querySelector('#printSection'));
+      //
+      //      if (!printSection) {
+      //        var printSection = document.createElement('div').id = 'printSection';
+      //        printSection.id = 'printSection';
+      //        document.body.append(printSection);
+      //      }
+      //
+      //      printSection.innerHTML = "";
+      //      printSection.append(domClone);
+      angular.element(document.querySelector('.sideNav')).addClass('no-print');
+      angular.element(document.querySelector('.main-content')).addClass('no-print');
+      angular.element(document.querySelector('.toolbar-dialog')).addClass('no-print');
+      angular.element(document.querySelector('.actions-dialog')).addClass('no-print');
+      $window.print();
+    }
+
+
     boDiag.cancel = function () {
       $mdDialog.hide();
     }

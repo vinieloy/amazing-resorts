@@ -17,6 +17,7 @@ app.constant("Api", {
   "Funcionario": "http://amazingresort.somee.com/api/Funcionario/",
   "Morador": "http://amazingresort.somee.com/api/Morador/",
   "Imovel": "http://amazingresort.somee.com/api/Imovel/",
+  "CriarImovel": "http://amazingresort.somee.com/api/Imovel/CriarImovel",
   "DesativarImovel": "http://amazingresort.somee.com/api/Imovel/DesativarImovel/",
   "Veiculo": "http://amazingresort.somee.com/api/Veiculo/",
   "CriarVeiculo": "http://amazingresort.somee.com/api/Veiculo/CriarVeiculo/",
