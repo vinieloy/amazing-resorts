@@ -40,23 +40,19 @@
       <!--FIM imagem usuario-->
 
       <!--menu-->
-      <md-content class="main" role="navigation">
-        <md-list ng-repeat="link in menu.links" ng-if="menu.usuario.admin = true">
-          <md-list-item ui-sref="{{link.url}}" ng-click="link.combo = !link.combo">
-            <i class="material-icons">{{link.icon}}</i>
-            <span flex></span>
-            <p>{{link.nome}}</p>
-            <span flex></span>
-            <md-icon class="md-primary md-icon-button" ng-show="link.combo && link.subMenu.length > 0">
-              <i class="material-icons">{{link.combo ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i>
-            </md-icon>
-          </md-list-item>
-          <md-list-item ng-show="link.combo && link.subMenu.length > 0" ng-repeat="subMenu in link.subMenu">
-            <span flex></span>
-            <p class="md-body-2">{{subMenu.nome}}</p>
-          </md-list-item>
-      </md-content>
-      <!--FIM menu-->
+      <md-list ng-if="menu.usuario.admin = true">
+        <md-list-item class="secondary-button-padding" ui-sref="{{link.url}}" ng-click="link.combo = !link.combo" ng-repeat="link in menu.links">
+          <md-icon class="md-icon-button material-icons md-primary">{{link.icon}}</md-icon>
+          <p>{{link.nome}}</p>
+          <md-icon class="md-primary md-icon-button" ng-show="link.combo && link.subMenu.length > 0">
+            <i class="material-icons">{{link.combo ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i>
+          </md-icon>
+        </md-list-item>
+        <md-list-item ng-show="link.combo && link.subMenu.length > 0" ng-repeat="subMenu in link.subMenu">
+          <span flex></span>
+          <p class="md-body-2">{{subMenu.nome}}</p>
+        </md-list-item>
+        <!--FIM menu-->
     </md-sidenav>
   </div>
 
