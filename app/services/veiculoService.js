@@ -23,7 +23,7 @@
     }
 
     function salvarVeiculo(veiculo) {
-      return $http.post(Api.Veiculo, JSON.stringify(veiculo))
+      return $http.post(Api.CriarVeiculo, JSON.stringify(veiculo))
         .success(success)
         .error(error);
     }

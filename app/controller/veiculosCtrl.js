@@ -5,12 +5,15 @@
     .module('app')
     .controller('veiculosCtrl', veiculosCtrl);
 
-  veiculosCtrl.$inject = ['$window', '$stateParams', 'veiculoService', 'pessoaService', '$mdToast', '$mdMedia', '$mdDialog', '$timeout'];
+  veiculosCtrl.$inject = ['$scope', '$window', '$stateParams', 'veiculoService', 'pessoaService', '$mdToast', '$mdMedia', '$mdDialog', '$timeout'];
 
-  function veiculosCtrl($window, $stateParams, veiculoService, pessoaService, $mdToast, $mdMedia, $mdDialog, $timeout) {
+  function veiculosCtrl($scope, $window, $stateParams, veiculoService, pessoaService, $mdToast, $mdMedia, $mdDialog, $timeout) {
 
     var ve = this;
     var _selected = null;
+
+    ve.isEdit = false;
+
 
     ve.recarregar = recarregar;
     ve.salvar = salvar;
@@ -33,6 +36,7 @@
 
     function init() {
       getVeiculos();
+      carregarPessoas();
     }
 
 
@@ -58,9 +62,11 @@
       veiculoService.salvarVeiculo(veiculo).then(success, error);
 
       function success(response) {
-        ve.formVeiculo = null;
-        getVeiculos();
+        ve.isEdit = false;
         ve.selectedIndex = 0;
+        ve.formVeiculo = '';
+        $scope.formVeiculo.$setPristine();
+        getVeiculos();
 
         $mdToast.show(
           $mdToast.simple()
@@ -73,17 +79,19 @@
 
 
     function editar(event, veiculo) {
+      ve.isEdit = true;
       ve.formVeiculo = '';
       _selected = veiculo;
       ve.formVeiculo = _selected;
       ve.selectedIndex = 1;
+      carregarPessoas();
     };
 
 
     function excluir(event, veiculo) {
 
       var confirm = $mdDialog.confirm()
-        .title('Excluir ' + veiculo.endereco + ' ?')
+        .title('Excluir veículo com placa: ' + veiculo.placa + ' ?')
         .ok('Sim')
         .cancel('Cancelar');
 
@@ -94,9 +102,11 @@
       });
 
       function success(response) {
-        ve.formVeiculo = '';
-        getVeiculos();
+        ve.isEdit = false;
         ve.selectedIndex = 0;
+        ve.formVeiculo = '';
+        $scope.formVeiculo.$setPristine();
+        getVeiculos();
 
         $mdToast.show(
           $mdToast.simple()
@@ -109,7 +119,9 @@
 
 
     function limpar(event) {
+      ve.isEdit = false;
       ve.formVeiculo = '';
+      $scope.formVeiculo.$setPristine();
     };
 
 

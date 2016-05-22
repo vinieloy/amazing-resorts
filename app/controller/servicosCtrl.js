@@ -5,9 +5,9 @@
     .module('app')
     .controller('servicosCtrl', servicosCtrl);
 
-  servicosCtrl.$inject = ['$window', '$stateParams', 'servicoService', 'pessoaService', '$mdToast', '$mdMedia', '$mdDialog', '$timeout'];
+  servicosCtrl.$inject = ['$scope', '$window', '$stateParams', 'servicoService', 'pessoaService', '$mdToast', '$mdMedia', '$mdDialog', '$timeout'];
 
-  function servicosCtrl($window, $stateParams, servicoService, pessoaService, $mdToast, $mdMedia, $mdDialog, $timeout) {
+  function servicosCtrl($scope, $window, $stateParams, servicoService, pessoaService, $mdToast, $mdMedia, $mdDialog, $timeout) {
 
     var se = this;
     var _selected = null;
@@ -55,9 +55,10 @@
       servicoService.salvarServico(servico).then(success, error);
 
       function success(response) {
-        se.formServico = null;
-        getServicos();
+        $scope.formServico.$setPristine();
+        se.formServico = '';
         se.selectedIndex = 0;
+        getServicos();
 
         $mdToast.show(
           $mdToast.simple()

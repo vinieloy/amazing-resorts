@@ -35,21 +35,19 @@
                     <th md-column md-order-by="pessoa.nome">Morador</th>
                     <th md-column md-order-by="marca">Marca</th>
                     <th md-column md-order-by="placa">Placa</th>
-                    <th md-column md-order-by="cor">Cor</th>
+                    <th md-column md-order-by="modelo">Modelo</th>
                     <th md-column md-order-by="ativo">Ativo</th>
                     <th md-column></th>
                   </tr>
                 </thead>
 
                 <tbody md-body>
-                  <tr md-row ng-repeat="veiculo in ve.veiculos | orderBy: ordenacao | limitTo: ve.option.limite: (ve.option.paginas- 1) * ve.option.limite | filter: busca ">
-
-                    {{veiculo}}
+                  <tr md-row ng-repeat="veiculo in ve.veiculos | orderBy: ordenacao | limitTo: ve.option.limite: (ve.option.paginas- 1) * ve.option.limite | filter: busca">
                     <td md-cell>{{veiculo.id}}</td>
                     <td md-cell>{{veiculo.pessoa.nome}}</td>
                     <td md-cell>{{veiculo.marca}}</td>
                     <td md-cell>{{veiculo.placa}}</td>
-                    <td md-cell>{{veiculo.cor}}</td>
+                    <td md-cell>{{veiculo.modelo}}</td>
                     <td md-cell>
                       <md-checkbox ng-checked="veiculo.ativo"></md-checkbox>
                     </td>
@@ -110,23 +108,32 @@
               <div layout="column">
 
                 <div layout="row">
-                  <md-input-container flex>
-                    <label>Morador (Dono do veículo)</label>
-                    <md-select ng-model="ve.formVeiculo.pessoa" md-on-open="ve.carregarPessoas()" style="min-width: 200px;" flex="50">
-                      <md-option ng-value="pessoa" ng-repeat="pessoa in ve.pessoas">{{pessoa.nome}}</md-option>
+                  <md-input-container ng-if="!ve.isEdit" flex>
+                    <md-select ng-model="ve.formVeiculo.pessoa" placeholder="Morador (Dono do veículo)" style="min-width: 200px;" flex="50">
+                      <md-option ng-repeat="pessoa in ve.pessoas" ng-value="pessoa">{{pessoa.nome}}</md-option>
                     </md-select>
                   </md-input-container>
+
+                  <md-input-container ng-if="ve.isEdit" flex>
+                    <label>Morador (Dono do veículo)</label>
+                    <md-select ng-model="ve.formVeiculo.pessoa" style="min-width: 200px;" flex="50">
+                      <md-select-label>{{ve.formVeiculo.pessoa.nome}}</md-select-label>
+                      <md-option ng-repeat="pessoa in ve.pessoas" ng-value="pessoa">{{pessoa.nome}}</md-option>
+                    </md-select>
+                  </md-input-container>
+                  
+                  {{pessoa.pessoa.nome}} = {{ve.formVeiculo.pessoa.nome}}
                 </div>
 
                 <div layout="row">
                   <md-input-container flex>
                     <label>Placa</label>
-                    <input type="text" ng-model="ve.formVeiculo.placa">
+                    <input type="text" ng-model="ve.formVeiculo.placa" required>
                   </md-input-container>
 
                   <md-input-container flex>
                     <label>Marca</label>
-                    <input type="text" ng-model="ve.formVeiculo.marca">
+                    <input type="text" ng-model="ve.formVeiculo.marca" required>
                   </md-input-container>
                 </div>
 
@@ -138,7 +145,7 @@
 
                   <md-input-container flex>
                     <label>Cor</label>
-                    <input type="text" ng-model="ve.formVeiculo.cor">
+                    <input type="text" ng-model="ve.formVeiculo.cor" required>
                   </md-input-container>
                 </div>
 

@@ -41,9 +41,7 @@
                 </thead>
 
                 <tbody md-body>
-                  <tr md-row ng-repeat="servico in se.servico | orderBy: ordenacao | limitTo: se.option.limite: (se.option.paginas- 1) * se.option.limite | filter: busca ">
-
-                    {{servico}}
+                  <tr md-row ng-repeat="servico in se.servicos | orderBy: ordenacao | limitTo: se.option.limite: (se.option.paginas- 1) * se.option.limite | filter: busca ">
                     <td md-cell>{{servico.id}}</td>
                     <td md-cell>{{servico.pessoa.nome}}</td>
                     <td md-cell>{{servico.servico}}</td>
@@ -60,7 +58,7 @@
                         </md-button>
                         <md-menu-content width=5>
                           <md-menu-item>
-                            <md-button layout-fill ng-click="se.editar($event, veiculo)">
+                            <md-button layout-fill ng-click="se.editar($event, servico)">
                               <md-icon>
                                 <i class="material-icons">mode_edit</i>
                               </md-icon>
