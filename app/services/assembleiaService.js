@@ -17,7 +17,7 @@
 
 
     function salvarAssembleia(assembleia) {
-      return $http.post(Api.Assembleia, JSON.stringify(assembleia))
+      return $http.post(Api.CriarAssembleia, JSON.stringify(assembleia))
         .success(success)
         .error(error);
     }
@@ -29,7 +29,7 @@
     }
 
     function getParticipantes(assembleiaId) {
-      return $http.get(Api.ParticipantesAssembleia, {
+      return $http.get(Api.AtaParticipantes, {
           params: {
             id: assembleiaId
           }

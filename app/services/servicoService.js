@@ -23,13 +23,13 @@
     }
 
     function salvarServico(servico) {
-      return $http.post(Api.Servico, JSON.stringify(servico))
+      return $http.post(Api.CriarServico, JSON.stringify(servico))
         .success(success)
         .error(error);
     }
 
     function desativarServico(id) {
-      return $http.post(Api.DesativarServico, id)
+      return $http.post(Api.ExcluirServico, id)
         .success(success)
         .error(error);
     }

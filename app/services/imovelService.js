@@ -29,7 +29,7 @@
     }
 
     function desativarImovel(id) {
-      return $http.post(Api.DesativarImovel, id)
+      return $http.post(Api.ExcluirImovel, id)
         .success(success)
         .error(error);
     }

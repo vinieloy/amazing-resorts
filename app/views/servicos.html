@@ -43,7 +43,7 @@
                 <tbody md-body>
                   <tr md-row ng-repeat="servico in se.servicos | orderBy: ordenacao | limitTo: se.option.limite: (se.option.paginas- 1) * se.option.limite | filter: busca ">
                     <td md-cell>{{servico.id}}</td>
-                    <td md-cell>{{servico.pessoa.nome}}</td>
+                    <td md-cell>{{servico.nome}}</td>
                     <td md-cell>{{servico.servico}}</td>
                     <td md-cell>{{servico.descricao}}</td>
                     <td md-cell>
@@ -108,7 +108,7 @@
                 <div layout="row">
                   <md-input-container flex>
                     <label>Prestador de serviço</label>
-                    <input type="text" ng-model="se.formServico.pessoa.nome" required>
+                    <input type="text" ng-model="se.formServico.nome" required>
                   </md-input-container>
 
                   <md-input-container flex>
