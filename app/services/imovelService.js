@@ -23,13 +23,13 @@
     }
 
     function salvarImovel(imovel) {
-      return $http.post(Api.Imovel, JSON.stringify(imovel))
+      return $http.post(Api.CriarImovel, JSON.stringify(imovel))
         .success(success)
         .error(error);
     }
 
     function desativarImovel(id) {
-      return $http.post(Api.DesativarImovel, id)
+      return $http.post(Api.ExcluirImovel, id)
         .success(success)
         .error(error);
     }

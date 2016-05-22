@@ -29,7 +29,7 @@
     }
 
     function desativarVeiculo(id) {
-      return $http.post(Api.DesativarVeiculo, id)
+      return $http.post(Api.ExcluirVeiculo, id)
         .success(success)
         .error(error);
     }

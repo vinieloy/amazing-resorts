@@ -37,13 +37,13 @@
     }
 
     function salvarMorador(pessoa) {
-      return $http.post(Api.Morador, JSON.stringify(pessoa))
+      return $http.post(Api.CriarMorador, JSON.stringify(pessoa))
         .success(success)
         .error(error);
     }
 
     function desativarPessoa(id) {
-      return $http.post(Api.DesativarUsuario, id)
+      return $http.post(Api.ExcluirUsuario, id)
         .success(success)
         .error(error);
     }
