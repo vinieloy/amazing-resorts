@@ -81,7 +81,7 @@
     function excluir(event, servico) {
 
       var confirm = $mdDialog.confirm()
-        .title('Excluir ' + servico.endereco + ' ?')
+        .title('Excluir ' + servico.nome + ' ?')
         .ok('Sim')
         .cancel('Cancelar');
 
