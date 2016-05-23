@@ -19,8 +19,8 @@
     vm.salvarAta = salvarAta;
     vm.excluirAta = excluirAta;
     vm.getAllAtaParticipante = getAllAtaParticipante;
-    vm.salvarAta = salvarAta;
-    vm.excluirAta = excluirAta;
+    vm.salvarAtaParticipante = salvarAtaParticipante;
+    vm.excluirAtaParticipante = excluirAtaParticipante;
 
 
     // assembleia

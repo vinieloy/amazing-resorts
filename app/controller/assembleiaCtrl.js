@@ -12,9 +12,12 @@
     var assem = this;
     var _selectedAssembleia = null;
     var _selectedAta = null;
+    var _selectedParticipante = null;
 
     assem.assembleias = null;
     assem.condominos = null;
+
+    assem.formParticipante = {'ativo': false};
 
     assem.option = {
       limite: 5,
@@ -218,22 +221,22 @@
     }
 
 
-    function editarParticipante(event, ata) {
+    function editarParticipante(event, participante) {
       assem.formAta = null;
-      _selectedAta = ata;
-      assem.formAta = _selectedAta;
+      _selectedParticipante = participante;
+      assem.formAta = _selectedParticipante;
       assem.selectedIndex = 4;
     }
 
-    function excluirParticipante(event, ata) {
+    function excluirParticipante(event, participante) {
 
       var confirm = $mdDialog.confirm()
-        .title('Excluir ata: "' + ata.id + '" ?')
+        .title('Excluir participante: "' + participante.id + '" ?')
         .ok('Sim')
         .cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function () {
-        assembleiaService.excluirAta(ata.id).then(success, error);
+        assembleiaService.excluirAta(participante.id).then(success, error);
       }, function () {
         console.log('cancelou');
       });

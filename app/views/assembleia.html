@@ -287,66 +287,31 @@
 
               <div layout="row">
                 <md-input-container style="margin-right: 10px;" flex>
-                  <label>Assembléia</label>
-                  <md-select ng-model="assem.formParticipante.assembleia">
-                    <md-option ng-repeat="assembleia in assem.assembleias" value="{{assembleia.id}}">
-                      {{assembleia.id}}
+                  <label>Ata</label>
+                  <md-select ng-model="assem.formParticipante.ata.id" required>
+                    <md-option ng-repeat="ata in assem.atas" value="{{ata.id}}">
+                      {{ata.id}}
                     </md-option>
                   </md-select>
                 </md-input-container>
 
                 <md-input-container flex>
-                  <!-- <label>Participantes</label>
-                  <md-select ng-model="assem.formParticipante.participante"
-                             md-on-close="assem.clearSearchTerm()"
-                             data-md-container-class="selectdemoSelectHeader"
-                             multiple>
-                    <md-select-header class="demo-select-header">
-                      <input ng-model="assem.searchTerm"
-                             type="search"
-                             placeholder="Buscar participante"
-                             class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-optgroup label="assem.participantes">
-                      <md-option ng-value="participante" ng-repeat="participante in assem.participantes |
-                        filter:assem.searchTerm">{{participante.nome}}</md-option>
-                    </md-optgroup>
-                  </md-select> -->
-
-
-                  <!-- <label>Vegetables</label>
-                  <md-select ng-model="selectedVegetables"
-                             md-on-close="clearSearchTerm()"
-                             data-md-container-class="selectdemoSelectHeader"
-                             multiple>
-                    <md-select-header class="demo-select-header">
-                      <input ng-model="searchTerm"
-                             type="search"
-                             placeholder="Search for a vegetable.."
-                             class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-optgroup label="vegetables">
-                      <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
-                        filter:searchTerm">{{vegetable}}</md-option>
-                    </md-optgroup>
+                  <label>Participante</label>
+                  <md-select ng-model="assem.formParticipante.pessoa.id" required>
+                    <md-option ng-repeat="participante in assem.participantes" value="{{participante.pessoa.id}}">
+                      {{participante.pessoa.nome}}
+                    </md-option>
                   </md-select>
-                </md-input-container> -->
-              </div>
-
-              <div class="row">
-                <md-list-item ng-repeat="participante in assem.participantes">
-                  <md-checkbox ng-model="participantes.ativo"></md-checkbox>
-                  <p>{{participante.nome}}</p>
-                </md-list-item>
+                </md-input-container>
               </div>
 
             </md-card-content>
           </md-card>
 
           <div layout="row" layout-align="end end">
-            <md-button class="md-raised" ng-click="assem.limparAta($event)">Limpar</md-button>
-            <md-button class="md-raised md-warn" ng-disabled="assem.formParticipante.id==null" ng-click="assem.excluirAta($event, assem.formParticipante)">Excluir</md-button>
-            <md-button class="md-raised md-primary" ng-disabled="!formParticipante.$valid" ng-click="assem.salvarAta($event, assem.formParticipante)">Salvar</md-button>
+            <md-button class="md-raised" ng-click="assem.limparParticipante($event)">Limpar</md-button>
+            <!-- <md-button class="md-raised md-warn" ng-disabled="assem.formParticipante.id==null" ng-click="assem.excluirParticipante($event, assem.formParticipante)">Excluir</md-button> -->
+            <md-button class="md-raised md-primary" ng-disabled="!formParticipante.$valid" ng-click="assem.salvarParticipante($event, assem.formParticipante)">Salvar</md-button>
           </div>
         </form>
 
