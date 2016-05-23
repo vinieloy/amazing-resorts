@@ -3,7 +3,7 @@
     <md-tab label="Buscar" md-whiteframe="4">
       <md-content layout-padding>
         <md-card md-whiteframe="2">
-         
+
           <md-card-title>
             <!--busca-->
             <md-input-container md-no-float flex>
@@ -23,7 +23,7 @@
               </md-icon>
             </md-button>
           </md-card-title>
-          
+
           <md-card-content>
             <!--tabela-->
             <md-table-container>
@@ -37,14 +37,14 @@
                     <th md-column></th>
                   </tr>
                 </thead>
-                
+
                 <tbody md-body>
                   <tr md-row ng-repeat="pessoa in ps.pessoas | orderBy: ordenacao | limitTo: ps.option.limite: (ps.option.paginas- 1) * ps.option.limite | filter: busca ">
-                    <td md-cell>{{pessoa.id}}</td>
-                    <td md-cell>{{pessoa.nome}}</td>
-                    <td md-cell>{{pessoa.cpf}}</td>
+                    <td md-cell>{{pessoa.pessoa.id}}</td>
+                    <td md-cell>{{pessoa.pessoa.nome}}</td>
+                    <td md-cell>{{pessoa.pessoa.cpf}}</td>
                     <td md-cell>
-                      <md-checkbox ng-checked="pessoa.ativo"></md-checkbox>
+                      <md-checkbox ng-checked="pessoa.pessoa.ativo"></md-checkbox>
                     </td>
                     <td md-cell>
                       <md-menu>
@@ -76,7 +76,7 @@
                   </tr>
                 </tbody>
               </table>
-              
+
               <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="ps.option.limite" md-limit-options="[5, 10, 15] " md-page="ps.option.paginas" md-total="{{ps.pessoas.length}} " md-page-select>
               </md-table-pagination>
             </md-table-container>
@@ -86,7 +86,7 @@
         </md-card>
       </md-content>
     </md-tab>
-    
+
     <md-tab label="Cadastro / Edição ">
       <md-content layout-padding>
 
@@ -169,35 +169,35 @@
               <div layout="column">
                 <md-input-container flex>
                   <label>Nome</label>
-                  <input type="text" ng-model="ps.formPessoa.nome" required>
+                  <input type="text" ng-model="ps.formPessoa.pessoa.nome" required>
                 </md-input-container>
 
                 <div layout="row">
                   <md-input-container flex>
                     <label>CPF</label>
-                    <input type="text" ng-model="ps.formPessoa.cpf" required>
+                    <input type="text" ng-model="ps.formPessoa.pessoa.cpf" required>
                   </md-input-container>
                   <md-input-container flex>
                     <label>Email</label>
-                    <input type="email" ng-model="ps.formPessoa.email">
+                    <input type="email" ng-model="ps.formPessoa.pessoa.email">
                   </md-input-container>
                   <md-input-container flex>
                     <label>RG</label>
-                    <input type="text" ng-model="ps.formPessoa.rg" required>
+                    <input type="text" ng-model="ps.formPessoa.pessoa.rg" required>
                   </md-input-container>
                 </div>
                 <div layout="row">
                   <md-input-container flex>
                     <label>Tel. Celular</label>
-                    <input type="tel" ng-model="ps.formPessoa.telCelular">
+                    <input type="tel" ng-model="ps.formPessoa.pessoa.telCelular">
                   </md-input-container>
                   <md-input-container flex>
                     <label>Tel. Fixo</label>
-                    <input type="tel" ng-model="ps.formPessoa.telFixo">
+                    <input type="tel" ng-model="ps.formPessoa.pessoa.telFixo">
                   </md-input-container>
                   <md-input-container flex>
                     <label>Tel. Trabalho</label>
-                    <input type="tel" ng-model="ps.formPessoa.telTrabalho">
+                    <input type="tel" ng-model="ps.formPessoa.pessoa.telTrabalho">
                   </md-input-container>
                 </div>
               </div>
@@ -216,15 +216,15 @@
                 <div layout="row">
                   <md-input-container flex>
                     <label>CTPS</label>
-                    <input type="text" ng-model="ps.formPessoa.ctps" required>
+                    <input type="text" ng-model="ps.formPessoa.pessoa.ctps" required>
                   </md-input-container>
                   <md-input-container flex>
                     <label>Serie</label>
-                    <input type="text" ng-model="ps.formPessoa.serie" required>
+                    <input type="text" ng-model="ps.formPessoa.pessoa.serie" required>
                   </md-input-container>
                   <md-input-container flex>
                     <label>Cargo</label>
-                    <input type="text" ng-model="ps.formPessoa.cargo" required>
+                    <input type="text" ng-model="ps.formPessoa.pessoa.cargo" required>
                   </md-input-container>
                 </div>
                 <!--<div layout="row">
@@ -244,17 +244,17 @@
           <md-card md-whiteframe="2">
             <md-card-content>
               <div>
-                <md-checkbox ng-model="ps.formPessoa.ativo">Ativo</md-checkbox>
-                <md-checkbox ng-model="ps.formPessoa.admin">Administrador</md-checkbox>
+                <md-checkbox ng-model="ps.formPessoa.pessoa.ativo">Ativo</md-checkbox>
+                <md-checkbox ng-model="ps.formPessoa.pessoa.admin">Administrador</md-checkbox>
               </div>
 
               <md-input-container flex>
                 <label>Senha</label>
-                <input type="password" ng-model="ps.formPessoa.senha" required>
+                <input type="password" ng-model="ps.formPessoa.pessoa.senha" required>
               </md-input-container>
               <md-input-container flex>
                 <label>Repita senha</label>
-                <input type="password" ng-model="ps.formPessoa.tempSenha" required>
+                <input type="password" ng-model="ps.formPessoa.pessoa.tempSenha" required>
               </md-input-container>
             </md-card-content>
           </md-card>
