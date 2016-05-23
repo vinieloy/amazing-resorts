@@ -72,7 +72,6 @@
       _selected = imovel;
       im.formImovel = _selected;
       im.selectedIndex = 1;
-
     };
 
     function excluir(event, imovel) {
