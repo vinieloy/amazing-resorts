@@ -21,6 +21,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
           controllerAs: 'fo'
         }
       }
+    }).state('forum-topico', {
+      url: '/forum/topico/:topicoId',
+      views: {
+        'defaultView': {
+          templateUrl: 'views/forum.topico.html',
+          controller: 'forumCtrl',
+          controllerAs: 'fo'
+        }
+      }
     }).state('assembleia', {
       url: '/assembleia',
       views: {
