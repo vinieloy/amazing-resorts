@@ -92,7 +92,7 @@
     function excluirAssembleia(event, assembleia) {
 
       var confirm = $mdDialog.confirm()
-        .title('Excluir evento: "' + assembleia.titulo + '" ?')
+        .title('Excluir Assembleia: "' + assembleia.id + '" ?')
         .ok('Sim')
         .cancel('Cancelar');
 
@@ -101,6 +101,20 @@
       }, function () {
         console.log('cancelou');
       });
+      
+      function success(response) {
+        assem.formAssembleia = null;
+        listarAssembleias();
+        assem.selectedIndex = 0;
+
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Excluido com sucesso')
+          .position('top right')
+          .hideDelay(3000)
+        );
+      }
+      
     }
 
     function limparAssembleia(event) {
@@ -227,16 +241,6 @@
         };
       }, 650);
     };
-
-    // assem.getCondominos = function(event) {
-    //     var service = usuarioService;
-    //     service.getAll()
-    //         .then(function(response) {
-    //             assem.condominos = response.data;
-    //         }, error);
-    // };
-
-
 
     function error(response) {
       $mdToast.show(

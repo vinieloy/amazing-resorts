@@ -30,8 +30,9 @@
                 <thead class="table" md-head md-order="ordenacao">
                   <tr md-row>
                     <th md-column md-order-by="id">#</th>
-                    <th md-column md-order-by="data">Data</th>
-                    <th md-column md-order-by="descricaotitulos">Descrição</th>
+                    <th md-column md-order-by="horaInicio">Hora Inicio</th>
+                    <th md-column md-order-by="horaFim">Hora Fim</th>
+                    <th md-column md-order-by="descricao">Descrição</th>
                     <!--<th md-column md-order-by="participantes.length">Qtd. participantes</th>-->
                     <th md-column md-order-by="status">Status</th>
                     <th md-column></th>
@@ -40,7 +41,8 @@
                 <tbody md-body>
                   <tr md-row ng-repeat="assembleia in assem.assembleias | orderBy: ordenacao | limitTo: assem.option.limite: (assem.option.paginas- 1) * assem.option.limite | filter: busca ">
                     <td md-cell>{{assembleia.id}}</td>
-                    <td md-cell>{{assembleia.data}}</td>
+                    <td md-cell>{{assembleia.horaInicio}}</td>
+                    <td md-cell>{{assembleia.horaFim}}</td>
                     <td md-cell>{{assembleia.descricao}}</td>
                     <!--<td md-cell>{{assembleia.participantes.length}}
                         <i class="material-icons" ng-show="assembleia.participantes.length > 0" ng-click="assem.verParticipantes($event, assembleia)">zoom_in</i>
@@ -102,8 +104,8 @@
             <md-card-content>
               <div layout="column">
                 <div layout-gt-xs="row">
-                  <md-datepicker ng-model="assem.formAssembleia.data" md-placeholder="Data">
-                  </md-datepicker>
+                  <!--<md-datepicker ng-model="assem.formAssembleia.data" md-placeholder="Data">
+                  </md-datepicker>-->
 
                   <md-input-container flex>
                     <label>Hora de início</label>
@@ -239,10 +241,10 @@
 
             <md-card-content>
               <div layout="column">
-                <div layout-gt-xs="row">
+                <!--<div layout-gt-xs="row">
                     <md-datepicker ng-model="assem.formAta.data" md-placeholder="Data" flex>
                     </md-datepicker>
-                </div>
+                </div>-->
 
                 <div layout-gt-xs="row">
                   <md-input-container class="md-block" flex>
