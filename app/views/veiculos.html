@@ -111,7 +111,7 @@
 
                   <md-input-container>
                     <label>Morador (Dono do veículo)</label>
-                    <md-select ng-model="ve.formVeiculo.pessoa" style="min-width: 300px;">
+                    <md-select ng-model="ve.formVeiculo.pessoa.id" style="min-width: 300px;">
                       <md-option ng-repeat="morador in ve.moradores" value="{{morador.pessoa.id}}">
                         {{morador.pessoa.nome}} - {{morador.pessoa.id}}
                       </md-option>
