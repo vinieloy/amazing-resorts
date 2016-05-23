@@ -20,7 +20,7 @@
     ve.editar = editar;
     ve.excluir = excluir;
     ve.limpar = limpar;
-    ve.carregarPessoas = carregarPessoas;
+    ve.carregarMoradores = carregarMoradores;
 
 
     // ve.veiculos = null;
@@ -36,7 +36,7 @@
 
     function init() {
       getVeiculos();
-      carregarPessoas();
+      carregarMoradores();
     }
 
 
@@ -125,13 +125,13 @@
     };
 
 
-    function carregarPessoas() {
+    function carregarMoradores() {
       // Use timeout to simulate a 650ms request.
       return $timeout(function () {
         pessoaService.getAllMoradores().then(success, error);
 
         function success(response) {
-          ve.pessoas = response.data;
+          ve.moradores = response.data;
         };
       }, 650);
     };

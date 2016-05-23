@@ -108,9 +108,19 @@
               <div layout="column">
 
                 <div layout="row">
-                  <md-input-container ng-if="!ve.isEdit" flex>
+
+                  <md-input-container>
+                    <label>Morador (Dono do veículo)</label>
+                    <md-select ng-model="ve.formVeiculo.pessoa" style="min-width: 300px;">
+                      <md-option ng-repeat="morador in ve.moradores" value="{{morador.pessoa.id}}">
+                        {{morador.pessoa.nome}} - {{morador.pessoa.id}}
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+
+                  <!-- <md-input-container ng-if="!ve.isEdit" flex>
                     <md-select ng-model="ve.formVeiculo.pessoa" placeholder="Morador (Dono do veículo)" style="min-width: 200px;" flex="50">
-                      <md-option ng-repeat="pessoa in ve.pessoas" ng-value="pessoa">{{pessoa.nome}}</md-option>
+                      <md-option ng-repeat="morador in ve.moradores" ng-value="pessoa">{{morador.nome}}</md-option>
                     </md-select>
                   </md-input-container>
 
@@ -120,7 +130,7 @@
                       <md-select-label>{{ve.formVeiculo.pessoa.nome}}</md-select-label>
                       <md-option ng-repeat="pessoa in ve.pessoas" ng-value="pessoa">{{pessoa.nome}}</md-option>
                     </md-select>
-                  </md-input-container>
+                  </md-input-container> -->
                   
                 </div>
 
