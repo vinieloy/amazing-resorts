@@ -1,4 +1,56 @@
-<md-content>
+<md-content ng-class="{'topico-padding': !fo.isCadastroTopico}">
+
+    <md-button class="md-accent md-fab md-fab-top-right" ng-click="fo.ativarCadastroTopico()">
+        <md-tooltip md-direction="left">
+          Cadastrar novo tópico
+        </md-tooltip>
+        <md-icon class="material-icons">
+            <i class="material-icons">view_list</i>
+        </md-icon>
+    </md-button>
+
+    <!--formulário-->
+    <form name="formTopico" class="formTopico" novalidate ng-show="fo.isCadastroTopico">
+
+      <!--topico-->
+      <md-card md-whiteframe="2">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Cadastrar de tópico</span> {{menu.usuario.id}}
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+          <div layout="column">
+
+            <div layout="row">
+              <md-input-container flex>
+                <label>Tópico</label>
+                <input type="text" ng-model="fo.formTopico.topico" required>
+              </md-input-container>
+
+              <md-input-container flex>
+                <label>Tópico</label>
+                <input type="text" ng-model="fo.formTopico.pessoa.id" required>
+              </md-input-container>
+              <!-- <input type="text" ng-value="menu.usuario.id" ng-model="fo.formTopico.pessoa" > -->
+
+                <!-- <md-datepicker ng-model="fo.formTopico.data" md-placeholder="Data">
+                </md-datepicker> -->
+            </div>
+
+            <md-checkbox ng-model="fo.formTopico.ativo">Ativo</md-checkbox>
+          </div>
+        </md-card-content>
+      </md-card>
+
+      <div layout="row" layout-align="end end">
+        <md-button class="md-raised" ng-click="fo.limparTopico($event)">Limpar</md-button>
+        <!-- <md-button class="md-raised md-warn" ng-disabled="fo.formTopico.id==null" ng-click="fo.excluirTopico($event, fo.formTopico)">Excluir</md-button> -->
+        <md-button class="md-raised md-primary" ng-disabled="!formTopico.$valid" ng-click="fo.salvarTopico($event, fo.formTopico)">Salvar</md-button>
+      </div>
+    </form>
+
     <md-list flex layout-padding>
         <md-list-item class="md-3-line" ng-repeat="topico in fo.topicos" 
                       ng-click="fo.goState('forum-topico', {'topicoId': topico.id})">
@@ -10,7 +62,7 @@
                     </div>
                     <div layout="column" layout-align="end start">
                         <p>Ultima postagem: {{topico.data}}</p>
-                        <p>Postagens: {{forum.qtdPosts}}</p>
+                        <p>Comentários: {{forum.qtdPosts}}</p>
                     </div>
                 </div>
             </div>

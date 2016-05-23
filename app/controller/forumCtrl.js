@@ -5,21 +5,27 @@
     .module('app')
     .controller('forumCtrl', forumCtrl);
 
-  forumCtrl.$inject = ['$stateParams', '$state', '$mdToast', 'forumService'];
+  forumCtrl.$inject = ['$window', '$stateParams', '$state', '$mdToast', 'forumService'];
 
-  function forumCtrl($stateParams, $state, $mdToast, forumService) {
+  function forumCtrl($window, $stateParams, $state, $mdToast, forumService) {
 
     var fo = this;
+    var _selected = null;
+
     fo.forum = null;
 
     fo.topicoID = $stateParams.topicoId;
+    fo.usuario = JSON.parse($window.sessionStorage.getItem('usuario'));
+    fo.formTopico.pessoa.id = usuario.id;
+    fo.isCadastroTopico = false;
 
     fo.recarregar = recarregar;
-    fo.salvar = salvar;
-    fo.editar = editar;
-    fo.excluir = excluir;
-    fo.limpar = limpar;
+    fo.salvarTopico = salvarTopico;
+    fo.editarTopico = editarTopico;
+    fo.excluirTopico = excluirTopico;
+    fo.limparTopico = limparTopico;
     fo.goState = goState;
+    fo.ativarCadastroTopico = ativarCadastroTopico;
 
 
     init();
@@ -32,6 +38,10 @@
 
     function goState(url, param) {
       $state.go(url, param);
+    }
+
+    function ativarCadastroTopico() {
+      fo.isCadastroTopico = !fo.isCadastroTopico;
     }
 
 
@@ -53,15 +63,14 @@
     };
 
 
-    function salvar(event, servico) {
+    function salvarTopico(event, topico) {
 
-      servicoService.salvarServico(servico).then(success, error);
+      forumService.salvarTopico(topico).then(success, error);
 
       function success(response) {
-        $scope.formServico.$setPristine();
-        fo.formServico = '';
-        fo.selectedIndex = 0;
-        getServicos();
+        $scope.formTopico.$setPristine();
+        fo.formTopico = '';
+        getTopicos();
 
         $mdToast.show(
           $mdToast.simple()
@@ -73,31 +82,29 @@
     };
 
 
-    function editar(event, servico) {
-      fo.formServico = '';
-      _selected = servico;
-      fo.formServico = _selected;
-      fo.selectedIndex = 1;
+    function editarTopico(event, topico) {
+      fo.formTopico = '';
+      _selected = topico;
+      fo.formTopico = _selected;
     };
 
 
-    function excluir(event, servico) {
+    function excluirTopico(event, topico) {
 
       var confirm = $mdDialog.confirm()
-        .title('Excluir ' + servico.nome + ' ?')
+        .title('Excluir ' + topico.nome + ' ?')
         .ok('Sim')
         .cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function () {
-        servicoService.desativarServico(servico.id).then(success, error);
+        forumService.desativarServico(topico.id).then(success, error);
       }, function () {
         console.log('cancelou');
       });
 
       function success(response) {
-        fo.formServico = '';
-        getServicos();
-        fo.selectedIndex = 0;
+        fo.formTopico = '';
+        getTopicos();
 
         $mdToast.show(
           $mdToast.simple()
@@ -109,12 +116,12 @@
     };
 
 
-    function limpar(event) {
-      fo.formServico = '';
+    function limparTopico(event) {
+      fo.formTopico = '';
     };
 
 
-
+    // cometarios
     function getCometarios() {
       forumService.getAllComentarios().then(success, error);
 
