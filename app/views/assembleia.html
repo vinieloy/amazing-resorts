@@ -33,7 +33,6 @@
                     <th md-column md-order-by="horaInicio">Hora Inicio</th>
                     <th md-column md-order-by="horaFim">Hora Fim</th>
                     <th md-column md-order-by="descricao">Descrição</th>
-                    <!--<th md-column md-order-by="participantes.length">Qtd. participantes</th>-->
                     <th md-column md-order-by="status">Status</th>
                     <th md-column></th>
                   </tr>
@@ -44,9 +43,6 @@
                     <td md-cell>{{assembleia.horaInicio}}</td>
                     <td md-cell>{{assembleia.horaFim}}</td>
                     <td md-cell>{{assembleia.descricao}}</td>
-                    <!--<td md-cell>{{assembleia.participantes.length}}
-                        <i class="material-icons" ng-show="assembleia.participantes.length > 0" ng-click="assem.verParticipantes($event, assembleia)">zoom_in</i>
-                    </td>-->
                     <td md-cell>
                       <md-checkbox ng-checked="assembleia.ativo"></md-checkbox>
                     </td>
@@ -172,7 +168,6 @@
                     <th md-column md-order-by="id">#</th>
                     <th md-column md-order-by="data">Data</th>
                     <th md-column md-order-by="descricaotitulos">Descrição</th>
-                    <!--<th md-column md-order-by="participantes.length">Qtd. participantes</th>-->
                     <th md-column md-order-by="status">Status</th>
                     <th md-column></th>
                   </tr>
@@ -182,9 +177,6 @@
                     <td md-cell>{{ata.id}}</td>
                     <td md-cell>{{ata.data}}</td>
                     <td md-cell>{{ata.descricao}}</td>
-                    <!--<td md-cell>{{assembleia.participantes.length}}
-                        <i class="material-icons" ng-show="assembleia.participantes.length > 0" ng-click="assem.verParticipantes($event, assembleia)">zoom_in</i>
-                    </td>-->
                     <td md-cell>
                       <md-checkbox ng-checked="ata.ativo"></md-checkbox>
                     </td>
@@ -345,9 +337,7 @@
                 <md-list-item ng-repeat="participante in assem.participantes">
                   <md-checkbox ng-model="participantes.ativo"></md-checkbox>
                   <p>{{participante.nome}}</p>
-                  <!-- <md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat" md-svg-icon="communication:message"></md-icon> -->
                 </md-list-item>
-
               </div>
 
             </md-card-content>

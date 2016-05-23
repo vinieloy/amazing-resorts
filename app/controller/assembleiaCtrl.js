@@ -139,7 +139,7 @@
       function success(response) {
         assem.formAta = null;
         listarAta();
-        assem.selectedIndex = 3;
+        assem.selectedIndex = 2;
 
         $mdToast.show(
           $mdToast.simple()
@@ -154,13 +154,13 @@
       assem.formAta = null;
       _selectedAta = ata;
       assem.formAta = _selectedAta;
-      assem.selectedIndex = 4;
+      assem.selectedIndex = 3;
     }
 
     function excluirAta(event, ata) {
 
       var confirm = $mdDialog.confirm()
-        .title('Excluir ata: "' + ata.titulo + '" ?')
+        .title('Excluir ata: "' + ata.id + '" ?')
         .ok('Sim')
         .cancel('Cancelar');
 
@@ -187,7 +187,7 @@
 
     function salvarParticipante(event, participante) {
 
-      assembleiaService.salvarAta(ata)
+      assembleiaService.salvarAtaParticipante(participante)
         .then(success, error);
 
       function success(response) {
@@ -215,7 +215,7 @@
     function excluirParticipante(event, ata) {
 
       var confirm = $mdDialog.confirm()
-        .title('Excluir ata: "' + ata.titulo + '" ?')
+        .title('Excluir ata: "' + ata.id + '" ?')
         .ok('Sim')
         .cancel('Cancelar');
 
