@@ -1,13 +1,23 @@
 <md-content>
     <md-list flex layout-padding>
-        <md-list-item class="md-3-line" ng-repeat="topico in fo.topicos"
+
+    <h3>{{fo.topicoAtual}}</h3>
+
+    <md-list-item class="md-3-line md-long-text"  ng-repeat="comentario in fo.listaComentarios"
         ng-click="fo.goState('topico', {'topicoId': topico.id})">
-            <div class="md-list-item-text" layout="column">
-                <div layout="row">
-                    {{fo.listaComentarios}}
-                </div>
+        <img ng-src="{{todos[0].face}}?25" class="md-avatar" alt="{{todos[0].who}}" />
+        <div class="md-list-item-text" layout="row">
+            <div layout="column" flex>
+                <h3>{{comentario.topico.pessoa.nome}}</h3>
+                <p>
+                    {{comentario.comentario}}
+                </p>
             </div>
-            <md-divider></md-divider>
-        </md-list-item>
+            <div layout="column" layout-align="end start">
+                <p>Data do comentário: {{comentario.data}}</p>
+            </div>
+        </div>
+      </md-list-item>
+
     </md-list>
 </md-content>

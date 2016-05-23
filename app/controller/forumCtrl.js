@@ -128,15 +128,17 @@
 
       var comentarioPorTopico = [];
 
+      if(fo.topicoID) {
         for (var i = 0; i < comentatiosCompleto.data.length; i++) {
           if (comentatiosCompleto.data[i].topico.id == fo.topicoID) {
             comentarioPorTopico.push(comentatiosCompleto.data[i]);
           }
         }
 
-        console.log(comentarioPorTopico);
-
         fo.listaComentarios = comentarioPorTopico;
+        fo.topicoAtual = comentarioPorTopico[0].topico.topico;
+      }
+
     }
 
 
