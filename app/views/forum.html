@@ -16,7 +16,7 @@
       <md-card md-whiteframe="2">
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">Cadastrar de tópico</span> {{menu.usuario.id}}
+            <span class="md-headline">Cadastrar tópico</span>
           </md-card-title-text>
         </md-card-title>
 
@@ -29,10 +29,10 @@
                 <input type="text" ng-model="fo.formTopico.topico" required>
               </md-input-container>
 
-              <md-input-container flex>
-                <label>Tópico</label>
-                <input type="text" ng-model="fo.formTopico.pessoa.id" required>
-              </md-input-container>
+              <!-- <md-input-container flex>
+                <label>Criado por</label>
+                <input type="text" value="{{menu.usuario.id}}" ng-model="fo.formTopico.pessoa.id" required>
+              </md-input-container> -->
               <!-- <input type="text" ng-value="menu.usuario.id" ng-model="fo.formTopico.pessoa" > -->
 
                 <!-- <md-datepicker ng-model="fo.formTopico.data" md-placeholder="Data">
@@ -52,7 +52,7 @@
     </form>
 
     <md-list flex layout-padding>
-        <md-list-item class="md-3-line" ng-repeat="topico in fo.topicos" 
+        <md-list-item class="md-3-line" ng-repeat="topico in fo.topicos | orderBy : id : reverse" 
                       ng-click="fo.goState('forum-topico', {'topicoId': topico.id})">
             <div class="md-list-item-text" layout="column">
                 <div layout="row">

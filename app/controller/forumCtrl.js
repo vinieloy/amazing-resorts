@@ -5,9 +5,9 @@
     .module('app')
     .controller('forumCtrl', forumCtrl);
 
-  forumCtrl.$inject = ['$window', '$stateParams', '$state', '$mdToast', 'forumService'];
+  forumCtrl.$inject = ['$scope', '$window', '$stateParams', '$state', '$mdToast', 'forumService'];
 
-  function forumCtrl($window, $stateParams, $state, $mdToast, forumService) {
+  function forumCtrl($scope, $window, $stateParams, $state, $mdToast, forumService) {
 
     var fo = this;
     var _selected = null;
@@ -16,7 +16,7 @@
 
     fo.topicoID = $stateParams.topicoId;
     fo.usuario = JSON.parse($window.sessionStorage.getItem('usuario'));
-    fo.formTopico.pessoa.id = usuario.id;
+    fo.formTopico = {'pessoa': {'id': fo.usuario.id}};
     fo.isCadastroTopico = false;
 
     fo.recarregar = recarregar;
@@ -50,7 +50,7 @@
 
       function success(response) {
         fo.topicos = response.data;
-
+        getTopicoAtual();
       };
     };
 
@@ -143,7 +143,23 @@
         }
 
         fo.listaComentarios = comentarioPorTopico;
-        fo.topicoAtual = comentarioPorTopico[0].topico.topico;
+        
+      }
+
+    }
+
+    function getTopicoAtual() {
+
+      var topicoAtual = [];
+
+      if(fo.topicoID) {
+        for (var i = 0; i < fo.topicos.length; i++) {
+          if (fo.topicos[i].id == fo.topicoID) {
+            topicoAtual.push(fo.topicos[i]);
+          }
+        }
+
+        fo.topicoAtual = topicoAtual[0].topico;
       }
 
     }
