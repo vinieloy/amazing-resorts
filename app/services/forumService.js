@@ -15,6 +15,8 @@
     vm.salvarTopico = salvarTopico;
     vm.excluirTopico = excluirTopico;
     vm.getAllComentarios = getAllComentarios;
+    vm.salvarComentario = salvarComentario;
+    vm.excluirComentario = excluirComentario;
 
 
     function getAll() {
@@ -37,6 +39,18 @@
 
     function getAllComentarios() {
       return $http.get(Api.Comentario)
+        .success(success)
+        .error(error);
+    }
+
+    function salvarComentario(comentario) {
+      return $http.post(Api.CriarComentario, JSON.stringify(comentario))
+        .success(success)
+        .error(error);
+    }
+
+    function excluirComentario(id) {
+      return $http.post(Api.ExcluirComentario, id)
         .success(success)
         .error(error);
     }

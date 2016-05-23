@@ -18,6 +18,7 @@
     fo.usuario = JSON.parse($window.sessionStorage.getItem('usuario'));
     fo.formTopico = {'pessoa': {'id': fo.usuario.id}};
     fo.isCadastroTopico = false;
+    fo.isCadastroComentario = false;
 
     fo.recarregar = recarregar;
     fo.salvarTopico = salvarTopico;
@@ -26,6 +27,11 @@
     fo.limparTopico = limparTopico;
     fo.goState = goState;
     fo.ativarCadastroTopico = ativarCadastroTopico;
+    fo.ativarCadastroComentario = ativarCadastroComentario;
+    fo.salvarComentario = salvarComentario;
+    fo.editarComentario = editarComentario;
+    fo.excluirComentario = excluirComentario;
+    fo.limparComentario = limparComentario;
 
 
     init();
@@ -42,6 +48,10 @@
 
     function ativarCadastroTopico() {
       fo.isCadastroTopico = !fo.isCadastroTopico;
+    }
+
+    function ativarCadastroComentario() {
+      fo.isCadastroComentario = !fo.isCadastroComentario;
     }
 
 
@@ -164,11 +174,73 @@
 
     }
 
+    function salvarComentario(event, comentario) {
+
+      var objComentario = {'comentario': comentario,
+                           'pessoa': {'id': fo.usuario.id}, 
+                           'topico': {'id': fo.topicoID}, 
+                           'ativo': false};
+
+      forumService.salvarComentario(objComentario).then(success, error);
+
+      function success(response) {
+        $scope.formComentario.$setPristine();
+        fo.formComentario = '';
+        getCometarios();
+
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Salvo com sucesso')
+          .position('top right')
+          .hideDelay(3000)
+        );
+      }
+    };
+
+
+    function editarComentario(event, comentario) {
+      fo.formComentario = '';
+      _selectedComentario = comentario;
+      fo.formComentario = _selectedComentario;
+    };
+
+
+    function excluirComentario(event, comentario) {
+
+      var confirm = $mdDialog.confirm()
+        .title('Excluir ' + comentario.nome + ' ?')
+        .ok('Sim')
+        .cancel('Cancelar');
+
+      $mdDialog.show(confirm).then(function () {
+        forumService.excluirComentario(comentario.id).then(success, error);
+      }, function () {
+        console.log('cancelou');
+      });
+
+      function success(response) {
+        fo.formComentario = '';
+        getCometarios();
+
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Excluido com sucesso')
+          .position('top right')
+          .hideDelay(3000)
+        );
+      }
+    };
+
+
+    function limparComentario(event) {
+      fo.formComentario = '';
+    };
+
 
     function error(response) {
       $mdToast.show(
         $mdToast.simple()
-        .textContent('Problemas ao conectar ao servidor: ' + responfo.data)
+        .textContent('Problemas ao conectar ao servidor: ' + response.data)
         .position('top right')
         .hideDelay(3000)
       );

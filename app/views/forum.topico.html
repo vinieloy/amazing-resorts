@@ -1,10 +1,31 @@
 <md-content>
+
+    <md-button class="md-accent md-fab md-fab-top-right" ng-click="fo.ativarCadastroComentario()">
+      <md-tooltip md-direction="left">
+        Criar novo comentário
+      </md-tooltip>
+      <md-icon class="material-icons">
+          <i class="material-icons">playlist_add</i>
+      </md-icon>
+    </md-button>
+
+    
+
     <md-list flex layout-padding>
 
-    <h3>{{fo.topicoAtual}}</h3>
+     <md-list-item class="md-2-line" >
+        <md-icon class="material-icons md-avatar">
+            <i class="material-icons">forum</i>
+        </md-icon>
+        <div class="md-list-item-text" ng-class="{'md-offset': $index == 2 }">
+          <h3>{{fo.topicoAtual}}</h3>
+          <p>Total de comentários: {{fo.listaComentarios.length}}</p>
+        </div>
+      </md-list-item>
 
-    <md-list-item class="md-3-line md-long-text"  ng-repeat="comentario in fo.listaComentarios"
-        ng-click="fo.goState('topico', {'topicoId': topico.id})">
+      <md-list-item class="md-3-line md-long-text"  ng-repeat="comentario in fo.listaComentarios"
+                    ng-click="fo.goState('topico', {'topicoId': topico.id})">
+        <md-divider ></md-divider>
         <img ng-src="{{todos[0].face}}?25" class="md-avatar" alt="{{todos[0].who}}" />
         <div class="md-list-item-text" layout="row">
             <div layout="column" flex>
@@ -20,4 +41,35 @@
       </md-list-item>
 
     </md-list>
+
+    <!--formulário-->
+    <form name="formCometario" class="formCometario" novalidate ng-show="fo.isCadastroComentario">
+
+      <!--topico-->
+      <md-card md-whiteframe="2">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Comentar</span>
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+          <div layout="column">
+
+            <div layout="row">
+              <md-input-container class="md-block" flex>
+                <label>Digite seu comentário</label>
+                <textarea ng-model="fo.formCometario.comentario" md-maxlength="250" rows="5" md-select-on-focus required></textarea>
+              </md-input-container>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+
+      <div layout="row" layout-align="end end">
+        <md-button class="md-raised" ng-click="fo.limparComentario($event)">Limpar</md-button>
+        <!-- <md-button class="md-raised md-warn" ng-disabled="fo.formCometario.id==null" ng-click="fo.excluirComentario($event, fo.formCometario)">Excluir</md-button> -->
+        <md-button class="md-raised md-primary" ng-disabled="!formCometario.$valid" ng-click="fo.salvarComentario($event, fo.formCometario.comentario)">Salvar</md-button>
+      </div>
+    </form>
 </md-content>
