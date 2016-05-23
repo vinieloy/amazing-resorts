@@ -191,10 +191,24 @@
             </md-card-title>
             <md-card-content>
               <div layout="column">
-                <md-input-container flex>
-                  <label>Nome</label>
-                  <input type="text" ng-model="ps.formPessoa.pessoa.nome" required>
-                </md-input-container>
+
+                <div class="row">
+                  <md-input-container>
+                    <label>Imóvel</label>
+                    <md-select ng-model="ps.formPessoa.imovel.id" style="min-width: 300px;">
+                      <md-option ng-repeat="imovel in ps.imoveis" value="{{imovel.id}}">
+                        Apartamento {{imovel.apartamento}}
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+
+                
+                  <md-input-container flex>
+                    <label>Nome</label>
+                    <input type="text" ng-model="ps.formPessoa.pessoa.nome" required>
+                  </md-input-container>
+                
 
                 <div layout="row">
                   <md-input-container flex>

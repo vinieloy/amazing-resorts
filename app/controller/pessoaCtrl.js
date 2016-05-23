@@ -5,9 +5,9 @@
     .module('app')
     .controller('pessoaCtrl', pessoaCtrl);
 
-  pessoaCtrl.$inject = ['$stateParams', 'pessoaService', '$mdToast', '$mdMedia', '$mdDialog', '$timeout'];
+  pessoaCtrl.$inject = ['$stateParams', 'pessoaService', 'imovelService', '$mdToast', '$mdMedia', '$mdDialog', '$timeout'];
 
-  function pessoaCtrl($stateParams, pessoaService, $mdToast, $mdMedia, $mdDialog, $timeout) {
+  function pessoaCtrl($stateParams, pessoaService, imovelService, $mdToast, $mdMedia, $mdDialog, $timeout) {
 
     var ps = this;
     var _selected = null;
@@ -24,6 +24,7 @@
     };
 
     getPessoas();
+    carregarImoveis();
 
     function getPessoas() {
       if (ps.isFuncionario) {
@@ -135,6 +136,19 @@
     ps.limpar = function (event) {
       ps.formPessoa = null;
     };
+
+
+    function carregarImoveis() {
+      // Use timeout to simulate a 650ms request.
+      return $timeout(function () {
+        imovelService.getAll().then(success, error);
+
+        function success(response) {
+          ps.imoveis = response.data;
+        };
+      }, 650);
+    };
+
 
     function error(response) {
       $mdToast.show(
