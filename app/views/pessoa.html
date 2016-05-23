@@ -30,10 +30,10 @@
               <table md-table md-progress="ps.loading">
                 <thead class="table" md-head md-order="ordenacao">
                   <tr md-row>
-                    <th md-column md-order-by="id">#</th>
-                    <th md-column md-order-by="nome">Nome</th>
-                    <th md-column md-order-by="cpf">CPF</th>
-                    <th md-column md-order-by="ativo">Ativo</th>
+                    <th md-column md-order-by="pessoa.id">#</th>
+                    <th md-column md-order-by="pessoa.nome">Nome</th>
+                    <th md-column md-order-by="pessoa.cpf">CPF</th>
+                    <th md-column md-order-by="pessoa.ativo">Ativo</th>
                     <th md-column></th>
                   </tr>
                 </thead>
@@ -94,70 +94,6 @@
         <form name="formPessoa" class="formPessoa" novalidate>
 
           <!--morador-->
-          <md-card md-whiteframe="2" ng-if="ps.isMorador">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">Imóvel</span>
-              </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-              <div layout="column">
-
-                <md-input-container flex>
-                  <label>Endereço</label>
-                  <input type="text" ng-model="ps.formPessoa.imovel.endereco" required>
-                </md-input-container>
-
-                <div layout="row">
-                  <md-input-container flex>
-                    <label>Apartamento</label>
-                    <input type="number" ng-model="ps.formPessoa.imovel.apartamento">
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>Número</label>
-                    <input type="number" ng-model="ps.formPessoa.imovel.numero">
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>CEP</label>
-                    <input type="text" ng-model="ps.formPessoa.imovel.cep" required>
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                    <label>Bloco</label>
-                    <input type="text" ng-model="ps.formPessoa.imovel.bloco">
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>Quadra</label>
-                    <input type="text" ng-model="ps.formPessoa.imovel.quadra">
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>Lote</label>
-                    <input type="text" ng-model="ps.formPessoa.imovel.lote">
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                    <label>Complemento</label>
-                    <input type="text" ng-model="ps.formPessoa.imovel.complemento">
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>Bairro</label>
-                    <input type="text" ng-model="ps.formPessoa.imovel.bairro" required>
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>Cidade</label>
-                    <input type="text" ng-model="ps.formPessoa.imovel.cidade" required>
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>Município</label>
-                    <input type="text" ng-model="ps.formPessoa.imovel.municipio" required>
-                  </md-input-container>
-                </div>
-                <md-checkbox ng-model="ps.formPessoa.imovel.ativo">Ativo</md-checkbox>
-              </div>
-            </md-card-content>
-          </md-card>
 
           <md-card md-whiteframe="2">
             <md-card-title>
