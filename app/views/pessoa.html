@@ -2,7 +2,9 @@
   <md-tabs md-dynamic-height md-stretch-tabs="always" md-whiteframe="4" md-selected="ps.selectedIndex" class="md-primary">
     <md-tab label="Buscar" md-whiteframe="4">
       <md-content layout-padding>
-        <md-card md-whiteframe="2">
+        
+        
+        <md-card md-whiteframe="2"  ng-if="ps.isMorador">
 
           <md-card-title>
             <!--busca-->
@@ -84,6 +86,92 @@
 
           </md-card-content>
         </md-card>
+        
+         <md-card md-whiteframe="2"  ng-if="ps.isFuncionario">
+
+          <md-card-title>
+            <!--busca-->
+            <md-input-container md-no-float flex>
+              <md-icon>
+                <i class="material-icons">search</i>
+              </md-icon>
+              <input ng-model="busca" type="text" placeholder="Buscar...">
+            </md-input-container>
+
+            <!--recarrega a tabela-->
+            <md-button class="md-icon-button" ng-click="ps.recarregar()">
+              <md-tooltip md-direction="left">
+                Atualizar
+              </md-tooltip>
+              <md-icon>
+                <i class="material-icons">refresh</i>
+              </md-icon>
+            </md-button>
+          </md-card-title>
+
+          <md-card-content>
+            <!--tabela-->
+            <md-table-container>
+              <table md-table md-progress="ps.loading">
+                <thead class="table" md-head md-order="ordenacao">
+                  <tr md-row>
+                    <th md-column md-order-by="id">#</th>
+                    <th md-column md-order-by="nome">Nome</th>
+                    <th md-column md-order-by="cpf">CPF</th>
+                    <th md-column md-order-by="ativo">Ativo</th>
+                    <th md-column></th>
+                  </tr>
+                </thead>
+
+                <tbody md-body>
+                  <tr md-row ng-repeat="pessoa in ps.pessoas | orderBy: ordenacao | limitTo: ps.option.limite: (ps.option.paginas- 1) * ps.option.limite | filter: busca ">
+                    <td md-cell>{{pessoa.id}}</td>
+                    <td md-cell>{{pessoa.nome}}</td>
+                    <td md-cell>{{pessoa.cpf}}</td>
+                    <td md-cell>
+                      <md-checkbox ng-checked="pessoa.ativo"></md-checkbox>
+                    </td>
+                    <td md-cell>
+                      <md-menu>
+                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                          <md-icon>
+                            <i class="material-icons">settings</i>
+                          </md-icon>
+                        </md-button>
+                        <md-menu-content width=5>
+                          <md-menu-item>
+                            <md-button layout-fill ng-click="ps.editar($event, pessoa)">
+                              <md-icon>
+                                <i class="material-icons">mode_edit</i>
+                              </md-icon>
+                              Edição
+                            </md-button>
+                          </md-menu-item>
+                          <md-menu-item>
+                            <md-button layout-fill class="md-raised md-warn" ng-click="ps.excluir($event, pessoa)">
+                              <md-icon>
+                                <i class="material-icons">delete_forever</i>
+                              </md-icon>
+                              Excluir
+                            </md-button>
+                          </md-menu-item>
+                        </md-menu-content>
+                      </md-menu>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="ps.option.limite" md-limit-options="[5, 10, 15] " md-page="ps.option.paginas" md-total="{{ps.pessoas.length}} " md-page-select>
+              </md-table-pagination>
+            </md-table-container>
+
+
+          </md-card-content>
+        </md-card>
+        
+        
+        
       </md-content>
     </md-tab>
 
@@ -95,7 +183,7 @@
 
           <!--morador-->
 
-          <md-card md-whiteframe="2">
+          <md-card md-whiteframe="2" ng-if="ps.isMorador">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">Dados pessoais</span>
@@ -142,6 +230,52 @@
 
           <!--funcionario-->
           <md-card md-whiteframe="2" ng-if="ps.isFuncionario">
+            
+            <md-card md-whiteframe="2">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Dados pessoais</span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+              <div layout="column">
+                <md-input-container flex>
+                  <label>Nome</label>
+                  <input type="text" ng-model="ps.formPessoa.nome" required>
+                </md-input-container>
+
+                <div layout="row">
+                  <md-input-container flex>
+                    <label>CPF</label>
+                    <input type="text" ng-model="ps.formPessoa.cpf" required>
+                  </md-input-container>
+                  <md-input-container flex>
+                    <label>Email</label>
+                    <input type="email" ng-model="ps.formPessoa.email">
+                  </md-input-container>
+                  <md-input-container flex>
+                    <label>RG</label>
+                    <input type="text" ng-model="ps.formPessoa.rg" required>
+                  </md-input-container>
+                </div>
+                <div layout="row">
+                  <md-input-container flex>
+                    <label>Tel. Celular</label>
+                    <input type="tel" ng-model="ps.formPessoa.telCelular">
+                  </md-input-container>
+                  <md-input-container flex>
+                    <label>Tel. Fixo</label>
+                    <input type="tel" ng-model="ps.formPessoa.telFixo">
+                  </md-input-container>
+                  <md-input-container flex>
+                    <label>Tel. Trabalho</label>
+                    <input type="tel" ng-model="ps.formPessoa.telTrabalho">
+                  </md-input-container>
+                </div>
+              </div>
+            </md-card-content>
+          </md-card>
+            
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">Informações trabalhistas</span>
@@ -152,15 +286,15 @@
                 <div layout="row">
                   <md-input-container flex>
                     <label>CTPS</label>
-                    <input type="text" ng-model="ps.formPessoa.pessoa.ctps" required>
+                    <input type="text" ng-model="ps.formPessoa.ctps" required>
                   </md-input-container>
                   <md-input-container flex>
                     <label>Serie</label>
-                    <input type="text" ng-model="ps.formPessoa.pessoa.serie" required>
+                    <input type="text" ng-model="ps.formPessoa.serie" required>
                   </md-input-container>
                   <md-input-container flex>
                     <label>Cargo</label>
-                    <input type="text" ng-model="ps.formPessoa.pessoa.cargo" required>
+                    <input type="text" ng-model="ps.formPessoa.cargo" required>
                   </md-input-container>
                 </div>
                 <!--<div layout="row">
@@ -177,7 +311,7 @@
             </md-card-content>
           </md-card>
 
-          <md-card md-whiteframe="2">
+          <md-card md-whiteframe="2"  ng-if="ps.isMorador">
             <md-card-content>
               <div>
                 <md-checkbox ng-model="ps.formPessoa.pessoa.ativo">Ativo</md-checkbox>
@@ -194,12 +328,37 @@
               </md-input-container>
             </md-card-content>
           </md-card>
+          
+          <md-card md-whiteframe="2"  ng-if="ps.isFuncionario">
+            <md-card-content>
+              <div>
+                <md-checkbox ng-model="ps.formPessoa.ativo">Ativo</md-checkbox>
+                <md-checkbox ng-model="ps.formPessoa.admin">Administrador</md-checkbox>
+              </div>
 
-          <div layout="row" layout-align="end end">
+              <md-input-container flex>
+                <label>Senha</label>
+                <input type="password" ng-model="ps.formPessoa.senha" required>
+              </md-input-container>
+              <md-input-container flex>
+                <label>Repita senha</label>
+                <input type="password" ng-model="ps.formPessoa.tempSenha" required>
+              </md-input-container>
+            </md-card-content>
+          </md-card>
+          
+          <div layout="row" layout-align="end end"  ng-if="ps.isMorador">
+            <md-button class="md-raised" ng-click="ps.limpar($event)">Limpar</md-button>
+            <md-button class="md-raised md-warn" ng-disabled="ps.formPessoa.pessoa.id==null" ng-click="ps.excluir($event, ps.formPessoa)">Excluir</md-button>
+            <md-button class="md-raised md-primary" ng-disabled="!formPessoa.$valid" ng-click="ps.salvar($event, ps.formPessoa)">Salvar</md-button>
+          </div>
+          
+          <div layout="row" layout-align="end end"  ng-if="ps.isFuncionario">
             <md-button class="md-raised" ng-click="ps.limpar($event)">Limpar</md-button>
             <md-button class="md-raised md-warn" ng-disabled="ps.formPessoa.id==null" ng-click="ps.excluir($event, ps.formPessoa)">Excluir</md-button>
             <md-button class="md-raised md-primary" ng-disabled="!formPessoa.$valid" ng-click="ps.salvar($event, ps.formPessoa)">Salvar</md-button>
           </div>
+          
         </form>
 
       </md-content>
