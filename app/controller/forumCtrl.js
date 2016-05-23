@@ -5,32 +5,150 @@
     .module('app')
     .controller('forumCtrl', forumCtrl);
 
-  forumCtrl.$inject = ['$mdToast', 'forumService'];
+  forumCtrl.$inject = ['$stateParams', '$state', '$mdToast', 'forumService'];
 
-  function forumCtrl($mdToast, forumService) {
+  function forumCtrl($stateParams, $state, $mdToast, forumService) {
 
-    var fr = this;
-    fr.forum = null;
+    var fo = this;
+    fo.forum = null;
 
-    getAll();
+    fo.topicoID = $stateParams.topicoId;
 
-    function getAll() {
-      forumService.getAll()
-        .then(success, error);
+    fo.recarregar = recarregar;
+    fo.salvar = salvar;
+    fo.editar = editar;
+    fo.excluir = excluir;
+    fo.limpar = limpar;
+    fo.goState = goState;
+
+
+    init();
+
+
+    function init() {
+      getTopicos();
+      getCometarios();
+    }
+
+    function goState(url, param) {
+      $state.go(url, param);
+    }
+
+
+    function getTopicos() {
+      forumService.getAll().then(success, error);
+
+      function success(response) {
+        fo.topicos = response.data;
+
+      };
     };
 
-    function success(response) {
-      fr.forum = response.data;
+
+    function recarregar() {
+      fo.servicos = [];
+      fo.loading = $timeout(function () {
+        getServicos();
+      }, 1000);
     };
+
+
+    function salvar(event, servico) {
+
+      servicoService.salvarServico(servico).then(success, error);
+
+      function success(response) {
+        $scope.formServico.$setPristine();
+        fo.formServico = '';
+        fo.selectedIndex = 0;
+        getServicos();
+
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Salvo com sucesso')
+          .position('top right')
+          .hideDelay(3000)
+        );
+      }
+    };
+
+
+    function editar(event, servico) {
+      fo.formServico = '';
+      _selected = servico;
+      fo.formServico = _selected;
+      fo.selectedIndex = 1;
+    };
+
+
+    function excluir(event, servico) {
+
+      var confirm = $mdDialog.confirm()
+        .title('Excluir ' + servico.nome + ' ?')
+        .ok('Sim')
+        .cancel('Cancelar');
+
+      $mdDialog.show(confirm).then(function () {
+        servicoService.desativarServico(servico.id).then(success, error);
+      }, function () {
+        console.log('cancelou');
+      });
+
+      function success(response) {
+        fo.formServico = '';
+        getServicos();
+        fo.selectedIndex = 0;
+
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Excluido com sucesso')
+          .position('top right')
+          .hideDelay(3000)
+        );
+      }
+    };
+
+
+    function limpar(event) {
+      fo.formServico = '';
+    };
+
+
+
+    function getCometarios() {
+      forumService.getAllComentarios().then(success, error);
+
+      function success(comentatiosCompleto) {
+        listarComentarioPorTopico(comentatiosCompleto);
+        // fo.cometarios = response.data;
+      };
+    };
+
+    function listarComentarioPorTopico(comentatiosCompleto) {
+
+      var comentarioPorTopico = [];
+
+        for (var i = 0; i < comentatiosCompleto.data.length; i++) {
+          if (comentatiosCompleto.data[i].topico.id == fo.topicoID) {
+            comentarioPorTopico.push(comentatiosCompleto.data[i]);
+          }
+        }
+
+        console.log(comentarioPorTopico);
+
+        fo.listaComentarios = comentarioPorTopico;
+    }
+
 
     function error(response) {
       $mdToast.show(
         $mdToast.simple()
-        .textContent('Erro: ' + response)
+        .textContent('Problemas ao conectar ao servidor: ' + responfo.data)
         .position('top right')
         .hideDelay(3000)
       );
     };
+
   }
 })();
 
@@ -57,7 +175,7 @@
 //    assembleiaService.getAll().then(success, error);
 //
 //    function success(response) {
-//      as.assembleias = response.data;
+//      as.assembleias = responfo.data;
 //    };
 //  }
 //
@@ -98,7 +216,7 @@
 //
 //      assembleiaService.getParticipantes(assembleia.Id)
 //        .then(function (response) {
-//          assembleia.participantes = response.data;
+//          assembleia.participantes = responfo.data;
 //        });
 //
 //      _selectedAssembleia = assembleia;
@@ -137,7 +255,7 @@
 //  as.getGondominos = function (event) {
 //    // usuarioService.getAll()
 //    //     .then(function(response) {
-//    //         as.condominos = response.data;
+//    //         as.condominos = responfo.data;
 //    //     }, error);
 //  };
 //});
@@ -145,7 +263,7 @@
 //app.controller('forumCtrl', function assembleiaModalCtrl($mdToast, forumService) {
 //
 //  var fr = this;
-//  fr.forum = null;
+//  fo.forum = null;
 //
 //  getAll();
 //
@@ -155,7 +273,7 @@
 //  };
 //
 //  function success(response) {
-//    fr.forum = response.data;
+//    fo.forum = responfo.data;
 //  };
 //
 //  function error(response) {

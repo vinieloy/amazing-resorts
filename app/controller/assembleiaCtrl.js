@@ -5,9 +5,9 @@
     .module('app')
     .controller('assembleiaCtrl', assembleiaCtrl);
 
-  assembleiaCtrl.$inject = ['$mdToast', '$mdMedia', '$mdDialog', 'assembleiaService', '$timeout', '$element'];
+  assembleiaCtrl.$inject = ['$scope', '$mdToast', '$mdMedia', '$mdDialog', 'assembleiaService', 'pessoaService', '$timeout', '$element'];
 
-  function assembleiaCtrl($mdToast, $mdMedia, $mdDialog, assembleiaService, $timeout, $element) {
+  function assembleiaCtrl($scope, $mdToast, $mdMedia, $mdDialog, assembleiaService, pessoaService, $timeout, $element) {
 
     var assem = this;
     var _selectedAssembleia = null;
@@ -30,6 +30,10 @@
     assem.editarAta = editarAta;
     assem.excluirAta = excluirAta;
     assem.limparAta = limparAta;
+    assem.salvarParticipante = salvarParticipante;
+    assem.editarParticipante = editarParticipante;
+    assem.excluirParticipante = excluirParticipante;
+    assem.limparParticipante = limparParticipante;
 
 
     init();
@@ -38,6 +42,7 @@
     function init() {
       listarAssembleias();
       listarAta();
+      listarParticipantes();
     }
 
 
@@ -154,6 +159,61 @@
 
     function limparAta(event) {
       assem.formAta = '';
+    }
+
+
+    // participantes
+    function listarParticipantes() {
+      pessoaService.getAllMoradores().then(success, error);
+
+      function success(response) {
+        assem.participantes = response.data;
+      };
+    }
+
+    function salvarParticipante(event, participante) {
+
+      assembleiaService.salvarAta(ata)
+        .then(success, error);
+
+      function success(response) {
+        assem.formAta = null;
+        listarAta();
+        assem.selectedIndex = 3;
+
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Salvo com sucesso')
+          .position('top right')
+          .hideDelay(3000)
+        );
+      }
+    }
+
+
+    function editarParticipante(event, ata) {
+      assem.formAta = null;
+      _selectedAta = ata;
+      assem.formAta = _selectedAta;
+      assem.selectedIndex = 4;
+    }
+
+    function excluirParticipante(event, ata) {
+
+      var confirm = $mdDialog.confirm()
+        .title('Excluir ata: "' + ata.titulo + '" ?')
+        .ok('Sim')
+        .cancel('Cancelar');
+
+      $mdDialog.show(confirm).then(function () {
+        assembleiaService.excluirAta(ata.id).then(success, error);
+      }, function () {
+        console.log('cancelou');
+      });
+    }
+
+    function limparParticipante(event) {
+      assem.formParticipante = '';
     }
 
 
