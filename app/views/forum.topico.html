@@ -43,7 +43,7 @@
     </md-list>
 
     <!--formulário-->
-    <form name="formCometario" class="formCometario" novalidate ng-show="fo.isCadastroComentario">
+    <form name="formComentario" class="formComentario" novalidate ng-show="fo.isCadastroComentario">
 
       <!--topico-->
       <md-card md-whiteframe="2">
@@ -59,7 +59,7 @@
             <div layout="row">
               <md-input-container class="md-block" flex>
                 <label>Digite seu comentário</label>
-                <textarea ng-model="fo.formCometario.comentario" md-maxlength="250" rows="5" md-select-on-focus required></textarea>
+                <textarea ng-model="fo.formComentario.comentario" md-maxlength="250" rows="5" md-select-on-focus required></textarea>
               </md-input-container>
             </div>
           </div>
@@ -68,8 +68,8 @@
 
       <div layout="row" layout-align="end end">
         <md-button class="md-raised" ng-click="fo.limparComentario($event)">Limpar</md-button>
-        <!-- <md-button class="md-raised md-warn" ng-disabled="fo.formCometario.id==null" ng-click="fo.excluirComentario($event, fo.formCometario)">Excluir</md-button> -->
-        <md-button class="md-raised md-primary" ng-disabled="!formCometario.$valid" ng-click="fo.salvarComentario($event, fo.formCometario.comentario)">Salvar</md-button>
+        <!-- <md-button class="md-raised md-warn" ng-disabled="fo.formComentario.id==null" ng-click="fo.excluirComentario($event, fo.formComentario)">Excluir</md-button> -->
+        <md-button class="md-raised md-primary" ng-disabled="!formComentario.$valid" ng-click="fo.salvarComentario($event, fo.formComentario)">Salvar</md-button>
       </div>
     </form>
 </md-content>

@@ -17,6 +17,7 @@
     fo.topicoID = $stateParams.topicoId;
     fo.usuario = JSON.parse($window.sessionStorage.getItem('usuario'));
     fo.formTopico = {'pessoa': {'id': fo.usuario.id}};
+    fo.formComentario = {'pessoa': {'id': fo.usuario.id}, 'topico': {'id': parseInt(fo.topicoID)}, 'ativo': false};
     fo.isCadastroTopico = false;
     fo.isCadastroComentario = false;
 
@@ -176,12 +177,9 @@
 
     function salvarComentario(event, comentario) {
 
-      var objComentario = {'comentario': comentario,
-                           'pessoa': {'id': fo.usuario.id}, 
-                           'topico': {'id': fo.topicoID}, 
-                           'ativo': false};
+      console.log(comentario);
 
-      forumService.salvarComentario(objComentario).then(success, error);
+      forumService.salvarComentario(comentario).then(success, error);
 
       function success(response) {
         $scope.formComentario.$setPristine();
