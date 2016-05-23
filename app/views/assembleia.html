@@ -166,8 +166,8 @@
                 <thead class="table" md-head md-order="ordenacao">
                   <tr md-row>
                     <th md-column md-order-by="id">#</th>
-                    <th md-column md-order-by="data">Data</th>
-                    <th md-column md-order-by="descricaotitulos">Descrição</th>
+                    <th md-column md-order-by="descricao">Descrição</th>
+                    <th md-column md-order-by="assembleia">Assembleia</th>
                     <th md-column md-order-by="status">Status</th>
                     <th md-column></th>
                   </tr>
@@ -175,8 +175,8 @@
                 <tbody md-body>
                   <tr md-row ng-repeat="ata in assem.atas | orderBy: ordenacao | limitTo: assem.option.limite: (assem.option.paginas- 1) * assem.option.limite | filter: busca ">
                     <td md-cell>{{ata.id}}</td>
-                    <td md-cell>{{ata.data}}</td>
                     <td md-cell>{{ata.descricao}}</td>
+                    <td md-cell>{{ata.assembleia.id}}</td>
                     <td md-cell>
                       <md-checkbox ng-checked="ata.ativo"></md-checkbox>
                     </td>

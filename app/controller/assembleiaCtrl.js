@@ -169,6 +169,19 @@
       }, function () {
         console.log('cancelou');
       });
+      
+      function success(response) {
+        assem.formAta = null;
+        listarAta();
+        assem.selectedIndex = 2;
+
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Excluido com sucesso')
+          .position('top right')
+          .hideDelay(3000)
+        );
+      }
     }
 
     function limparAta(event) {
