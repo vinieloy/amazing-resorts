@@ -32,6 +32,7 @@
                 <thead class="table" md-head md-order="ordenacao">
                   <tr md-row>
                     <th md-column md-order-by="id">#</th>
+                    <th md-column md-order-by="apartamento">Apartamento</th>
                     <th md-column md-order-by="endereco">Endereco</th>
                     <th md-column md-order-by="numero">Numero</th>
                     <th md-column md-order-by="cep">CEP</th>
@@ -42,6 +43,7 @@
                 <tbody md-body>
                   <tr md-row ng-repeat="imovel in im.imoveis | orderBy: ordenacao | limitTo: im.option.limite: (im.option.paginas- 1) * im.option.limite | filter: busca ">
                     <td md-cell>{{imovel.id}}</td>
+                    <td md-cell>{{imovel.apartamento}}</td>
                     <td md-cell>{{imovel.endereco}}</td>
                     <td md-cell>{{imovel.numero}}</td>
                     <td md-cell>{{imovel.cep}}</td>
