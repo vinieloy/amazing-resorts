@@ -77,7 +77,7 @@
     function excluir(event, imovel) {
 
       var confirm = $mdDialog.confirm()
-        .title('Excluir ' + imovel.endereco + ' ?')
+        .title('Excluir ' + imovel.apartamento + ' ?')
         .ok('Sim')
         .cancel('Cancelar');
 
@@ -88,8 +88,6 @@
       });
 
       function success(response) {
-        // var indice = im.imoveis.indexOf(imovel);
-        // im.imoveis.splice(indice, 1);
         im.formImovel = null;
         getImoveis();
         im.selectedIndex = 0;
