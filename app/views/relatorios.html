@@ -1,1 +1,6 @@
-relatorios
+<md-content ng-controller="relatoriosCtrl as re">
+    <canvas id="bar" class="chart chart-bar" chart-data="re.data" chart-labels="re.labels" chart-series="re.series"></canvas>
+
+    <canvas id="doughnut" class="chart chart-doughnut" chart-data="re.data2" chart-labels="re.labels2">
+</canvas>
+</md-content>
