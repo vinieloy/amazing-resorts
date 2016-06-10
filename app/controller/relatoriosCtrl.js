@@ -18,23 +18,39 @@
       [28, 48, 40, 19, 86, 27, 90]
     ];
 
-    re.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-    re.data2 = [300, 500, 100];
+    re.labels2;
+    re.data2;
 
     re.loadGrafico = function(tipoRelatorio) {
       if (tipoRelatorio === 'pie') {
         relatoriosService.getPie().then(
-          function success(pie) {
+          function(pie) {
 
+            var status = [];
+            var qtd = [];
+            for (var i = 0; i < pie.data.length; i++) {
+              status.push(pie.data[i].status);
+              qtd.push(pie.data[i].quantidade);
+            };
+
+            re.labels2 = status;
+            re.data2 = qtd;
           });
       } else {
         relatoriosService.getBar().then(
-          function success(bar) {
+          function(bar) {
 
+            var status = [];
+            var qtd = [];
+            for (var i = 0; i < bar.data.length; i++) {
+              status.push(bar.data[i].status);
+              qtd.push(bar.data[i].quantidade);
+            };
+
+            // re.labels = status;
+            //re.data = qtd;
           });
       }
     }
-
   }
-
 })();

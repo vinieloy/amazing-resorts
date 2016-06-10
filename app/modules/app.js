@@ -55,6 +55,6 @@ app.constant("Api", {
     "CriarComentario": "http://amazingresort.somee.com/api/Comentario/CriarComentario/",
     "ExcluirComentario": "http://amazingresort.somee.com/api/Comentario/ExcluirComentario/",
 
-    "RelatoriosPie": "",
-    "RelatoriosBar": "",
+    "RelatoriosPie": "http://amazingresort.somee.com/api/Relatorio/QuantidadeFuncionario/",
+    "RelatoriosBar": "http://amazingresort.somee.com/api/Relatorio/QuantidadeMorador/",
 });
