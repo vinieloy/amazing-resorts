@@ -9,7 +9,8 @@
     </md-input-container>
 
     <div layout-padding flex>
-        <canvas ng-if="tipoRelatorio === 'bar'" id="bar" class="chart chart-bar" chart-data="re.data" chart-labels="re.labels" chart-series="re.series" chart-legend="true"></canvas>
+        <!--<canvas ng-if="tipoRelatorio === 'bar'" id="bar" class="chart chart-bar" chart-data="re.data" chart-labels="re.labels" chart-series="re.series" chart-legend="true"></canvas>-->
+        <canvas ng-if="tipoRelatorio === 'bar'" id="doughnut" class="chart chart-doughnut" chart-data="re.data" chart-labels="re.labels" chart-legend="true"></canvas>
         <canvas ng-if="tipoRelatorio === 'pie'" id="pie" class="chart chart-pie" chart-data="re.data2" chart-labels="re.labels2" chart-legend="true"></canvas>
     </div>
 </md-content>
