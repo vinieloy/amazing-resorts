@@ -5,9 +5,9 @@
     .module('app')
     .controller('relatoriosCtrl', relatoriosCtrl);
 
-  relatoriosCtrl.$inject = [];
+  relatoriosCtrl.$inject = ['relatoriosService'];
 
-  function relatoriosCtrl() {
+  function relatoriosCtrl(relatoriosService) {
 
     var re = this;
     re.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
@@ -20,6 +20,21 @@
 
     re.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
     re.data2 = [300, 500, 100];
+
+    re.loadGrafico = function(tipoRelatorio) {
+      if (tipoRelatorio === 'pie') {
+        relatoriosService.getPie().then(
+          function success(pie) {
+
+          });
+      } else {
+        relatoriosService.getBar().then(
+          function success(bar) {
+
+          });
+      }
+    }
+
   }
 
 })();
