@@ -42,23 +42,23 @@
           </md-card-content>
           <md-card-actions layout-align="start" layout="column ">
             <md-button class="md-raised md-primary" flex="100 " ng-click="lg.entrar()" ng-disabled="!formLogin.$valid">Entrar</md-button>
-            <md-button md-no-ink class="md-primary">Esqueci minha senha</md-button>
+            <md-button md-no-ink class="md-primary" ng-click="lg.esqueciSenha()">Esqueci minha senha</md-button>
           </md-card-actions>
         </form>
       </md-card>
-      </div>
     </div>
+  </div>
 
-    <script src="src/js/angular.min.js "></script>
-    <script src="src/js/angular-aria.min.js "></script>
-    <script src="src/js/angular-animate.min.js "></script>
-    <script src="src/js/angular-messages.min.js "></script>
-    <script src="src/js/angular-resource.min.js "></script>
-    <script src="src/js/angular-material.min.js "></script>
-    
-    <script src="modules/app.login.js "></script>    
-    <script src="services/acessoService.js "></script>
-    <script src="controller/loginCtrl.js "></script>
+  <script src="src/js/angular.min.js "></script>
+  <script src="src/js/angular-aria.min.js "></script>
+  <script src="src/js/angular-animate.min.js "></script>
+  <script src="src/js/angular-messages.min.js "></script>
+  <script src="src/js/angular-resource.min.js "></script>
+  <script src="src/js/angular-material.min.js "></script>
+
+  <script src="modules/app.login.js "></script>
+  <script src="services/acessoService.js "></script>
+  <script src="controller/loginCtrl.js "></script>
 </body>
 
 </html>

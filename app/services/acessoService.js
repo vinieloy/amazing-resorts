@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -12,10 +12,17 @@
     var vm = this;
 
     vm.login = login;
+    vm.esqueciSenha = esqueciSenha;
 
 
     function login(credenciais) {
       return $http.post(Api.LoginUsuario, JSON.stringify(credenciais))
+        .success(success)
+        .error(error);
+    }
+
+    function esqueciSenha(email) {
+      return $http.post(Api.esqueciSenha, JSON.stringify(email))
         .success(success)
         .error(error);
     }
