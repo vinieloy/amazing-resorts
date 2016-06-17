@@ -1,321 +1,321 @@
 <md-content>
-  <md-tabs md-dynamic-height md-stretch-tabs="always" md-whiteframe="4" md-selected="assem.selectedIndex" class="md-primary">
-    <md-tab label="Buscar Assembléia" md-whiteframe="4">
-      <md-content layout-padding>
-        <md-card md-whiteframe="2">
-          <md-card-title>
-            <!--busca-->
-            <md-input-container md-no-float flex>
-              <md-icon>
-                <i class="material-icons">search</i>
-              </md-icon>
-              <input ng-model="busca" type="text" placeholder="Buscar...">
-            </md-input-container>
+    <md-tabs md-dynamic-height md-stretch-tabs="always" md-whiteframe="4" md-selected="assem.selectedIndex" class="md-primary">
+        <md-tab label="Buscar Assembléia" md-whiteframe="4">
+            <md-content layout-padding>
+                <md-card md-whiteframe="2">
+                    <md-card-title>
+                        <!--busca-->
+                        <md-input-container md-no-float flex>
+                            <md-icon>
+                                <i class="material-icons">search</i>
+                            </md-icon>
+                            <input ng-model="busca" type="text" placeholder="Buscar...">
+                        </md-input-container>
 
-            <!--recarrega a tabela-->
-            <md-button class="md-icon-button" ng-click="assem.recarregar()">
-              <md-tooltip md-direction="left">
-                Atualizar
-              </md-tooltip>
-              <md-icon>
-                <i class="material-icons">refresh</i>
-              </md-icon>
-            </md-button>
-          </md-card-title>
-
-          <md-card-content>
-            <!--tabela-->
-            <md-table-container>
-              <table md-table md-progress="assem.loading">
-                <thead class="table" md-head md-order="ordenacao">
-                  <tr md-row>
-                    <th md-column md-order-by="id">#</th>
-                    <th md-column md-order-by="horaInicio">Hora Inicio</th>
-                    <th md-column md-order-by="horaFim">Hora Fim</th>
-                    <th md-column md-order-by="descricao">Descrição</th>
-                    <th md-column md-order-by="status">Status</th>
-                    <th md-column></th>
-                  </tr>
-                </thead>
-                <tbody md-body>
-                  <tr md-row ng-repeat="assembleia in assem.assembleias | orderBy: ordenacao | limitTo: assem.option.limite: (assem.option.paginas- 1) * assem.option.limite | filter: busca ">
-                    <td md-cell>{{assembleia.id}}</td>
-                    <td md-cell>{{assembleia.horaInicio}}</td>
-                    <td md-cell>{{assembleia.horaFim}}</td>
-                    <td md-cell>{{assembleia.descricao}}</td>
-                    <td md-cell>
-                      <md-checkbox ng-checked="assembleia.ativo"></md-checkbox>
-                    </td>
-                    <td md-cell>
-                      <md-menu>
-                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                          <md-icon>
-                            <i class="material-icons">settings</i>
-                          </md-icon>
+                        <!--recarrega a tabela-->
+                        <md-button class="md-icon-button" ng-click="assem.recarregar()">
+                            <md-tooltip md-direction="left">
+                                Atualizar
+                            </md-tooltip>
+                            <md-icon>
+                                <i class="material-icons">refresh</i>
+                            </md-icon>
                         </md-button>
-                        <md-menu-content width=5>
-                          <md-menu-item>
-                            <md-button layout-fill ng-click="assem.editarAssembleia($event, assembleia)">
-                              <md-icon>
-                                <i class="material-icons">mode_edit</i>
-                              </md-icon>
-                              Edição
-                            </md-button>
-                          </md-menu-item>
-                          <md-menu-item>
-                            <md-button layout-fill class="md-raised md-warn" ng-click="assem.excluirAssembleia($event, assembleia)">
-                              <md-icon>
-                                <i class="material-icons">delete_forever</i>
-                              </md-icon>
-                              Excluir
-                            </md-button>
-                          </md-menu-item>
-                        </md-menu-content>
-                      </md-menu>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="assem.option.limite" md-limit-options="[5, 10, 15] " md-page="assem.option.paginas" md-total="{{assem.assembleiassem.length}} " md-page-select>
-              </md-table-pagination>
-            </md-table-container>
+                    </md-card-title>
 
-          </md-card-content>
-        </md-card>
-      </md-content>
-    </md-tab>
+                    <md-card-content>
+                        <!--tabela-->
+                        <md-table-container>
+                            <table md-table md-progress="assem.loading">
+                                <thead class="table" md-head md-order="ordenacao">
+                                    <tr md-row>
+                                        <th md-column md-order-by="id">#</th>
+                                        <th md-column md-order-by="horaInicio">Hora Inicio</th>
+                                        <th md-column md-order-by="horaFim">Hora Fim</th>
+                                        <th md-column md-order-by="descricao">Descrição</th>
+                                        <th md-column md-order-by="status">Status</th>
+                                        <th md-column></th>
+                                    </tr>
+                                </thead>
+                                <tbody md-body>
+                                    <tr md-row ng-repeat="assembleia in assem.assembleias | orderBy: ordenacao | limitTo: assem.option.limite: (assem.option.paginas- 1) * assem.option.limite | filter: busca ">
+                                        <td md-cell>{{assembleia.id}}</td>
+                                        <td md-cell>{{assembleia.horaInicio}}</td>
+                                        <td md-cell>{{assembleia.horaFim}}</td>
+                                        <td md-cell>{{assembleia.descricao}}</td>
+                                        <td md-cell>
+                                            <md-checkbox ng-checked="assembleia.ativo"></md-checkbox>
+                                        </td>
+                                        <td md-cell>
+                                            <md-menu>
+                                                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                                    <md-icon>
+                                                        <i class="material-icons">settings</i>
+                                                    </md-icon>
+                                                </md-button>
+                                                <md-menu-content width=5>
+                                                    <md-menu-item>
+                                                        <md-button layout-fill ng-click="assem.editarAssembleia($event, assembleia)">
+                                                            <md-icon>
+                                                                <i class="material-icons">mode_edit</i>
+                                                            </md-icon>
+                                                            Edição
+                                                        </md-button>
+                                                    </md-menu-item>
+                                                    <md-menu-item>
+                                                        <md-button layout-fill class="md-raised md-warn" ng-click="assem.excluirAssembleia($event, assembleia)">
+                                                            <md-icon>
+                                                                <i class="material-icons">delete_forever</i>
+                                                            </md-icon>
+                                                            Excluir
+                                                        </md-button>
+                                                    </md-menu-item>
+                                                </md-menu-content>
+                                            </md-menu>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="assem.option.limite" md-limit-options="[5, 10, 15] " md-page="assem.option.paginas" md-total="{{assem.assembleiassem.length}} " md-page-select>
+                            </md-table-pagination>
+                        </md-table-container>
 
-    <md-tab label="Cadastro/Edição Assembléia">
-      <md-content layout-padding>
+                    </md-card-content>
+                </md-card>
+            </md-content>
+        </md-tab>
 
-        <!--formulário-->
-        <form name="formAssembleia" class="formAssembleia" novalidate>
-          <md-card md-whiteframe="2">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">Assembléia</span>
-              </md-card-title-text>
-            </md-card-title>
+        <md-tab label="Cadastro/Edição Assembléia">
+            <md-content layout-padding>
 
-            <md-card-content>
-              <div layout="column">
-                <div layout-gt-xs="row">
-                  <!--<md-datepicker ng-model="assem.formAssembleia.data" md-placeholder="Data">
+                <!--formulário-->
+                <form name="formAssembleia" class="formAssembleia" novalidate>
+                    <md-card md-whiteframe="2">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Assembléia</span>
+                            </md-card-title-text>
+                        </md-card-title>
+
+                        <md-card-content>
+                            <div layout="column">
+                                <div layout-gt-xs="row">
+                                    <!--<md-datepicker ng-model="assem.formAssembleia.data" md-placeholder="Data">
                   </md-datepicker>-->
 
-                  <md-input-container flex>
-                    <label>Hora de início</label>
-                    <input type="text" ng-model="assem.formAssembleia.horaInicio">
-                  </md-input-container>
+                                    <md-input-container flex>
+                                        <label>Hora de início</label>
+                                        <input type="text" ng-model="assem.formAssembleia.horaInicio" mask='99:99'>
+                                    </md-input-container>
 
-                  <md-input-container flex>
-                    <label>Hora de término</label>
-                    <input type="text" ng-model="assem.formAssembleia.horaFim">
-                  </md-input-container>
-                </div>
+                                    <md-input-container flex>
+                                        <label>Hora de término</label>
+                                        <input type="text" ng-model="assem.formAssembleia.horaFim" mask='99:99'>
+                                    </md-input-container>
+                                </div>
 
-                <div layout="row">
-                  <md-input-container class="md-block" flex>
-                    <label>Descrição</label>
-                    <textarea ng-model="assem.formAssembleia.descricao" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
-                  </md-input-container>
-                </div>
+                                <div layout="row">
+                                    <md-input-container class="md-block" flex>
+                                        <label>Descrição</label>
+                                        <textarea ng-model="assem.formAssembleia.descricao" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
+                                    </md-input-container>
+                                </div>
 
-                <md-checkbox ng-model="assem.formAssembleia.ativo">Ativo</md-checkbox>
-              </div>
-            </md-card-content>
-          </md-card>
+                                <md-checkbox ng-model="assem.formAssembleia.ativo">Ativo</md-checkbox>
+                            </div>
+                        </md-card-content>
+                    </md-card>
 
-          <div layout="row" layout-align="end end">
-            <md-button class="md-raised" ng-click="assem.limparAssembleia($event)">Limpar</md-button>
-            <md-button class="md-raised md-warn" ng-disabled="assem.formAssembleia.id==null" ng-click="assem.excluirAssembleia($event, assem.formAssembleia)">Excluir</md-button>
-            <md-button class="md-raised md-primary" ng-disabled="!formAssembleia.$valid" ng-click="assem.salvarAssembleia($event, assem.formAssembleia)">Salvar</md-button>
-          </div>
-        </form>
+                    <div layout="row" layout-align="end end">
+                        <md-button class="md-raised" ng-click="assem.limparAssembleia($event)">Limpar</md-button>
+                        <md-button class="md-raised md-warn" ng-disabled="assem.formAssembleia.id==null" ng-click="assem.excluirAssembleia($event, assem.formAssembleia)">Excluir</md-button>
+                        <md-button class="md-raised md-primary" ng-disabled="!formAssembleia.$valid" ng-click="assem.salvarAssembleia($event, assem.formAssembleia)">Salvar</md-button>
+                    </div>
+                </form>
 
-      </md-content>
-    </md-tab>
+            </md-content>
+        </md-tab>
 
-    <md-tab label="Buscar Ata" md-whiteframe="4">
-      <md-content layout-padding>
-        <md-card md-whiteframe="2">
-          <md-card-title>
-            <!--busca-->
-            <md-input-container md-no-float flex>
-              <md-icon>
-                <i class="material-icons">search</i>
-              </md-icon>
-              <input ng-model="busca" type="text" placeholder="Buscar...">
-            </md-input-container>
+        <md-tab label="Buscar Ata" md-whiteframe="4">
+            <md-content layout-padding>
+                <md-card md-whiteframe="2">
+                    <md-card-title>
+                        <!--busca-->
+                        <md-input-container md-no-float flex>
+                            <md-icon>
+                                <i class="material-icons">search</i>
+                            </md-icon>
+                            <input ng-model="busca" type="text" placeholder="Buscar...">
+                        </md-input-container>
 
-            <!--recarrega a tabela-->
-            <md-button class="md-icon-button" ng-click="assem.recarregar()">
-              <md-tooltip md-direction="left">
-                Atualizar
-              </md-tooltip>
-              <md-icon>
-                <i class="material-icons">refresh</i>
-              </md-icon>
-            </md-button>
-          </md-card-title>
-
-          <md-card-content>
-            <!--tabela-->
-            <md-table-container>
-              <table md-table md-progress="assem.loading">
-                <thead class="table" md-head md-order="ordenacao">
-                  <tr md-row>
-                    <th md-column md-order-by="id">#</th>
-                    <th md-column md-order-by="descricao">Descrição</th>
-                    <th md-column md-order-by="assembleia">Assembleia</th>
-                    <th md-column md-order-by="status">Status</th>
-                    <th md-column></th>
-                  </tr>
-                </thead>
-                <tbody md-body>
-                  <tr md-row ng-repeat="ata in assem.atas | orderBy: ordenacao | limitTo: assem.option.limite: (assem.option.paginas- 1) * assem.option.limite | filter: busca ">
-                    <td md-cell>{{ata.id}}</td>
-                    <td md-cell>{{ata.descricao}}</td>
-                    <td md-cell>{{ata.assembleia.id}}</td>
-                    <td md-cell>
-                      <md-checkbox ng-checked="ata.ativo"></md-checkbox>
-                    </td>
-                    <td md-cell>
-                      <md-menu>
-                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                          <md-icon>
-                            <i class="material-icons">settings</i>
-                          </md-icon>
+                        <!--recarrega a tabela-->
+                        <md-button class="md-icon-button" ng-click="assem.recarregar()">
+                            <md-tooltip md-direction="left">
+                                Atualizar
+                            </md-tooltip>
+                            <md-icon>
+                                <i class="material-icons">refresh</i>
+                            </md-icon>
                         </md-button>
-                        <md-menu-content width=5>
-                          <md-menu-item>
-                            <md-button layout-fill ng-click="assem.editarAta($event, ata)">
-                              <md-icon>
-                                <i class="material-icons">mode_edit</i>
-                              </md-icon>
-                              Edição
-                            </md-button>
-                          </md-menu-item>
-                          <md-menu-item>
-                            <md-button layout-fill class="md-raised md-warn" ng-click="assem.excluirAta($event, ata)">
-                              <md-icon>
-                                <i class="material-icons">delete_forever</i>
-                              </md-icon>
-                              Excluir
-                            </md-button>
-                          </md-menu-item>
-                        </md-menu-content>
-                      </md-menu>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="assem.option.limite" md-limit-options="[5, 10, 15] " md-page="assem.option.paginas" md-total="{{assem.atas.length}} " md-page-select>
-              </md-table-pagination>
-            </md-table-container>
+                    </md-card-title>
 
-          </md-card-content>
-        </md-card>
-      </md-content>
-    </md-tab>
+                    <md-card-content>
+                        <!--tabela-->
+                        <md-table-container>
+                            <table md-table md-progress="assem.loading">
+                                <thead class="table" md-head md-order="ordenacao">
+                                    <tr md-row>
+                                        <th md-column md-order-by="id">#</th>
+                                        <th md-column md-order-by="descricao">Descrição</th>
+                                        <th md-column md-order-by="assembleia">Assembleia</th>
+                                        <th md-column md-order-by="status">Status</th>
+                                        <th md-column></th>
+                                    </tr>
+                                </thead>
+                                <tbody md-body>
+                                    <tr md-row ng-repeat="ata in assem.atas | orderBy: ordenacao | limitTo: assem.option.limite: (assem.option.paginas- 1) * assem.option.limite | filter: busca ">
+                                        <td md-cell>{{ata.id}}</td>
+                                        <td md-cell>{{ata.descricao}}</td>
+                                        <td md-cell>{{ata.assembleia.id}}</td>
+                                        <td md-cell>
+                                            <md-checkbox ng-checked="ata.ativo"></md-checkbox>
+                                        </td>
+                                        <td md-cell>
+                                            <md-menu>
+                                                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                                    <md-icon>
+                                                        <i class="material-icons">settings</i>
+                                                    </md-icon>
+                                                </md-button>
+                                                <md-menu-content width=5>
+                                                    <md-menu-item>
+                                                        <md-button layout-fill ng-click="assem.editarAta($event, ata)">
+                                                            <md-icon>
+                                                                <i class="material-icons">mode_edit</i>
+                                                            </md-icon>
+                                                            Edição
+                                                        </md-button>
+                                                    </md-menu-item>
+                                                    <md-menu-item>
+                                                        <md-button layout-fill class="md-raised md-warn" ng-click="assem.excluirAta($event, ata)">
+                                                            <md-icon>
+                                                                <i class="material-icons">delete_forever</i>
+                                                            </md-icon>
+                                                            Excluir
+                                                        </md-button>
+                                                    </md-menu-item>
+                                                </md-menu-content>
+                                            </md-menu>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="assem.option.limite" md-limit-options="[5, 10, 15] " md-page="assem.option.paginas" md-total="{{assem.atas.length}} " md-page-select>
+                            </md-table-pagination>
+                        </md-table-container>
 
-    <md-tab label="Cadastro/Edição Ata">
-      <md-content layout-padding>
+                    </md-card-content>
+                </md-card>
+            </md-content>
+        </md-tab>
 
-        <!--formulário-->
-        <form name="formAta" class="formAta" novalidate>
-          <md-card md-whiteframe="2">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">Ata</span>
-              </md-card-title-text>
-            </md-card-title>
+        <md-tab label="Cadastro/Edição Ata">
+            <md-content layout-padding>
 
-            <md-card-content>
-              <div layout="column">
-                <!--<div layout-gt-xs="row">
+                <!--formulário-->
+                <form name="formAta" class="formAta" novalidate>
+                    <md-card md-whiteframe="2">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Ata</span>
+                            </md-card-title-text>
+                        </md-card-title>
+
+                        <md-card-content>
+                            <div layout="column">
+                                <!--<div layout-gt-xs="row">
                     <md-datepicker ng-model="assem.formAta.data" md-placeholder="Data" flex>
                     </md-datepicker>
                 </div>-->
 
-                <div layout-gt-xs="row">
-                  <md-input-container class="md-block" flex>
-                    <label>Assembléia</label>
-                    <md-select ng-model="assem.formAta.assembleia.id">
-                      <md-option ng-repeat="assembleia in assem.assembleias" value="{{assembleia.id}}">
-                        {{assembleia.id}}
-                      </md-option>
-                    </md-select>
-                  </md-input-container>
-                </div>
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" flex>
+                                        <label>Assembléia</label>
+                                        <md-select ng-model="assem.formAta.assembleia.id">
+                                            <md-option ng-repeat="assembleia in assem.assembleias" value="{{assembleia.id}}">
+                                                {{assembleia.id}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
 
-                <div layout="row">
-                  <md-input-container class="md-block" flex>
-                    <label>Descrição</label>
-                    <textarea ng-model="assem.formAta.descricao" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
-                  </md-input-container>
-                </div>
+                                <div layout="row">
+                                    <md-input-container class="md-block" flex>
+                                        <label>Descrição</label>
+                                        <textarea ng-model="assem.formAta.descricao" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
+                                    </md-input-container>
+                                </div>
 
-                <md-checkbox ng-model="assem.formAta.ativo">Ativo</md-checkbox>
-              </div>
-            </md-card-content>
-          </md-card>
+                                <md-checkbox ng-model="assem.formAta.ativo">Ativo</md-checkbox>
+                            </div>
+                        </md-card-content>
+                    </md-card>
 
-          <div layout="row" layout-align="end end">
-            <md-button class="md-raised" ng-click="assem.limparAta($event)">Limpar</md-button>
-            <md-button class="md-raised md-warn" ng-disabled="assem.formAta.id==null" ng-click="assem.excluirAta($event, assem.formAta)">Excluir</md-button>
-            <md-button class="md-raised md-primary" ng-disabled="!formAta.$valid" ng-click="assem.salvarAta($event, assem.formAta)">Salvar</md-button>
-          </div>
-        </form>
+                    <div layout="row" layout-align="end end">
+                        <md-button class="md-raised" ng-click="assem.limparAta($event)">Limpar</md-button>
+                        <md-button class="md-raised md-warn" ng-disabled="assem.formAta.id==null" ng-click="assem.excluirAta($event, assem.formAta)">Excluir</md-button>
+                        <md-button class="md-raised md-primary" ng-disabled="!formAta.$valid" ng-click="assem.salvarAta($event, assem.formAta)">Salvar</md-button>
+                    </div>
+                </form>
 
-      </md-content>
-    </md-tab>
+            </md-content>
+        </md-tab>
 
 
-    <md-tab label="Participantes">
-      <md-content layout-padding>
+        <md-tab label="Participantes">
+            <md-content layout-padding>
 
-        <form name="formParticipante" class="formParticipante" novalidate>
-          <md-card md-whiteframe="2">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">Inscrever Participantes</span>
-              </md-card-title-text>
-            </md-card-title>
+                <form name="formParticipante" class="formParticipante" novalidate>
+                    <md-card md-whiteframe="2">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Inscrever Participantes</span>
+                            </md-card-title-text>
+                        </md-card-title>
 
-            <md-card-content>
+                        <md-card-content>
 
-              <div layout="row">
-                <md-input-container style="margin-right: 10px;" flex>
-                  <label>Ata</label>
-                  <md-select ng-model="assem.formParticipante.ata.id" required>
-                    <md-option ng-repeat="ata in assem.atas" value="{{ata.id}}">
-                      {{ata.id}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
+                            <div layout="row">
+                                <md-input-container style="margin-right: 10px;" flex>
+                                    <label>Ata</label>
+                                    <md-select ng-model="assem.formParticipante.ata.id" required>
+                                        <md-option ng-repeat="ata in assem.atas" value="{{ata.id}}">
+                                            {{ata.id}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
 
-                <md-input-container flex>
-                  <label>Participante</label>
-                  <md-select ng-model="assem.formParticipante.pessoa.id" required>
-                    <md-option ng-repeat="participante in assem.participantes" value="{{participante.pessoa.id}}">
-                      {{participante.pessoa.nome}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
+                                <md-input-container flex>
+                                    <label>Participante</label>
+                                    <md-select ng-model="assem.formParticipante.pessoa.id" required>
+                                        <md-option ng-repeat="participante in assem.participantes" value="{{participante.pessoa.id}}">
+                                            {{participante.pessoa.nome}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
 
-            </md-card-content>
-          </md-card>
+                        </md-card-content>
+                    </md-card>
 
-          <div layout="row" layout-align="end end">
-            <md-button class="md-raised" ng-click="assem.limparParticipante($event)">Limpar</md-button>
-            <!-- <md-button class="md-raised md-warn" ng-disabled="assem.formParticipante.id==null" ng-click="assem.excluirParticipante($event, assem.formParticipante)">Excluir</md-button> -->
-            <md-button class="md-raised md-primary" ng-disabled="!formParticipante.$valid" ng-click="assem.salvarParticipante($event, assem.formParticipante)">Salvar</md-button>
-          </div>
-        </form>
+                    <div layout="row" layout-align="end end">
+                        <md-button class="md-raised" ng-click="assem.limparParticipante($event)">Limpar</md-button>
+                        <!-- <md-button class="md-raised md-warn" ng-disabled="assem.formParticipante.id==null" ng-click="assem.excluirParticipante($event, assem.formParticipante)">Excluir</md-button> -->
+                        <md-button class="md-raised md-primary" ng-disabled="!formParticipante.$valid" ng-click="assem.salvarParticipante($event, assem.formParticipante)">Salvar</md-button>
+                    </div>
+                </form>
 
-      </md-content>
-    </md-tab>
-  </md-tabs>
+            </md-content>
+        </md-tab>
+    </md-tabs>
 </md-content>

@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -52,14 +52,14 @@
       };
     };
 
-    ps.recarregar = function () {
+    ps.recarregar = function() {
       ps.pessoas = null;
-      ps.loading = $timeout(function () {
+      ps.loading = $timeout(function() {
         getPessoas();
       }, 1000);
     };
 
-    ps.salvar = function (event, pessoa) {
+    ps.salvar = function(event, pessoa) {
 
       if (pessoa.senha !== pessoa.tempSenha) {
         $mdDialog.show(
@@ -96,7 +96,7 @@
       }
     };
 
-    ps.editar = function (event, pessoa) {
+    ps.editar = function(event, pessoa) {
       ps.formPessoa = null;
       _selected = pessoa;
       ps.formPessoa = _selected;
@@ -104,16 +104,16 @@
 
     };
 
-    ps.excluir = function (event, pessoa) {
+    ps.excluir = function(event, pessoa) {
 
       var confirm = $mdDialog.confirm()
         .title('Excluir ' + pessoa.nome + ' ?')
         .ok('Sim')
         .cancel('Cancelar');
 
-      $mdDialog.show(confirm).then(function () {
+      $mdDialog.show(confirm).then(function() {
         pessoaService.desativarPessoa(pessoa.id).then(success, error);
-      }, function () {
+      }, function() {
         console.log('cancelou');
       });
 
@@ -133,14 +133,14 @@
       }
     };
 
-    ps.limpar = function (event) {
+    ps.limpar = function(event) {
       ps.formPessoa = null;
     };
 
 
     function carregarImoveis() {
       // Use timeout to simulate a 650ms request.
-      return $timeout(function () {
+      return $timeout(function() {
         imovelService.getAll().then(success, error);
 
         function success(response) {
@@ -158,5 +158,6 @@
         .hideDelay(3000)
       );
     };
+
   }
 })();

@@ -1,4 +1,4 @@
-var loginApp = angular.module('loginApp', ['ngMaterial']);
+var loginApp = angular.module('loginApp', ['ngMaterial', 'ngMask']);
 
 loginApp.constant("Api", {
   "url": "http://amazingresort.somee.com/api/",
