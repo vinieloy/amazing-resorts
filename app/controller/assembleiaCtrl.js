@@ -46,6 +46,7 @@
       listarAssembleias();
       listarAta();
       listarParticipantes();
+      listarAllPaticipantes();
     }
 
 
@@ -201,6 +202,14 @@
       };
     }
 
+    function listarAllPaticipantes() {
+          assembleiaService.getAllAtaParticipante().then(success, error);
+
+          function success(response) {
+            assem.participantes = response.data;
+          };
+        }
+
     function salvarParticipante(event, participante) {
 
       assembleiaService.salvarAtaParticipante(participante)
@@ -208,8 +217,8 @@
 
       function success(response) {
         assem.formAta = null;
-        listarAta();
-        assem.selectedIndex = 3;
+        listarAllPaticipantes();
+        assem.selectedIndex = 4;
 
         $mdToast.show(
           $mdToast.simple()
@@ -225,22 +234,36 @@
       assem.formAta = null;
       _selectedParticipante = participante;
       assem.formAta = _selectedParticipante;
-      assem.selectedIndex = 4;
+      assem.selectedIndex = 5;
     }
 
     function excluirParticipante(event, participante) {
 
       var confirm = $mdDialog.confirm()
-        .title('Excluir participante: "' + participante.id + '" ?')
+        .title('Excluir participante: "' + participante.id + '" - "' + participante.pessoa.nome + '" ?')
         .ok('Sim')
         .cancel('Cancelar');
 
       $mdDialog.show(confirm).then(function () {
-        assembleiaService.excluirAta(participante.id).then(success, error);
+        assembleiaService.excluirAtaParticipante(participante.id).then(success, error);
       }, function () {
         console.log('cancelou');
       });
+
+      function success(response) {
+        assem.formAta = null;
+        listarAllPaticipantes();
+        assem.selectedIndex = 4;
+
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Excluido com sucesso')
+          .position('top right')
+          .hideDelay(3000)
+        );
+      }
     }
+
 
     function limparParticipante(event) {
       assem.formParticipante = '';
@@ -269,37 +292,3 @@
 
   }
 })();
-
-
-// app.controller('assembleiaModalCtrl', function assembleiaModalCtrl($mdDialog, data, usuarioService) {
-
-//     var md = this;
-//     md.participantes = null;
-
-//     getParticipantes(data.id);
-
-//     function getParticipantes(assembleiaId) {
-//         usuarioService.getParticipantes(assembleiaId, {
-//             params: {
-//                 id: assembleiaId
-//             }
-//         }).then(success, error);
-//     };
-
-//     function success(response) {
-//         md.participantes = response.data;
-//     };
-
-//     function error(response) {
-//         $mdToast.show(
-//             $mdToast.simple()
-//             .textContent('Erro: ' + response)
-//             .position('top right')
-//             .hideDelay(3000)
-//         );
-//     };
-
-//     md.fechar = function() {
-//         $mdDialog.cancel();
-//     };
-// });

@@ -1,5 +1,6 @@
 <md-content>
   <md-tabs md-dynamic-height md-stretch-tabs="always" md-whiteframe="4" md-selected="assem.selectedIndex" class="md-primary">
+
     <md-tab label="Buscar Assembléia" md-whiteframe="4">
       <md-content layout-padding>
         <md-card md-whiteframe="2">
@@ -76,7 +77,7 @@
                   </tr>
                 </tbody>
               </table>
-              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="assem.option.limite" md-limit-options="[5, 10, 15] " md-page="assem.option.paginas" md-total="{{assem.assembleiassem.length}} " md-page-select>
+              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="assem.option.limite" md-limit-options="[5, 10, 15] " md-page="assem.option.paginas" md-total="{{assem.assembleias.length}} " md-page-select>
               </md-table-pagination>
             </md-table-container>
 
@@ -272,6 +273,91 @@
     </md-tab>
 
 
+
+
+<md-tab label="Buscar Participantes" md-whiteframe="4">
+      <md-content layout-padding>
+        <md-card md-whiteframe="2">
+          <md-card-title>
+            <!--busca-->
+            <md-input-container md-no-float flex>
+              <md-icon>
+                <i class="material-icons">search</i>
+              </md-icon>
+              <input ng-model="busca" type="text" placeholder="Buscar...">
+            </md-input-container>
+
+            <!--recarrega a tabela-->
+            <md-button class="md-icon-button" ng-click="assem.recarregar()">
+              <md-tooltip md-direction="left">
+                Atualizar
+              </md-tooltip>
+              <md-icon>
+                <i class="material-icons">refresh</i>
+              </md-icon>
+            </md-button>
+          </md-card-title>
+
+          <md-card-content>
+            <!--tabela-->
+            <md-table-container>
+              <table md-table md-progress="assem.loading">
+                <thead class="table" md-head md-order="ordenacao">
+                  <tr md-row>
+                    <th md-column md-order-by="id">#</th>
+                    <th md-column md-order-by="nome">Nome</th>
+                    <th md-column md-order-by="assembleia">Assembleia</th>
+                    <th md-column md-order-by="ata">Ata</th>
+                    <th md-column></th>
+                  </tr>
+                </thead>
+                <tbody md-body>
+                  <tr md-row ng-repeat="participante in assem.participantes | orderBy: ordenacao | limitTo: assem.option.limite: (assem.option.paginas- 1) * assem.option.limite | filter: busca ">
+                    <td md-cell>{{participante.id}}</td>
+                    <td md-cell>{{participante.pessoa.nome}}</td>
+                    <td md-cell>{{participante.ata.assembleia.id}}</td>
+                    <td md-cell>{{participante.ata.id}}</td>
+                    <td md-cell>
+                      <md-menu>
+                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                          <md-icon>
+                            <i class="material-icons">settings</i>
+                          </md-icon>
+                        </md-button>
+                        <md-menu-content width=5>
+                          <!--<md-menu-item>
+                            <md-button layout-fill ng-click="assem.editarAta($event, ata)">
+                              <md-icon>
+                                <i class="material-icons">mode_edit</i>
+                              </md-icon>
+                              Edição
+                            </md-button>
+                          </md-menu-item>-->
+                          <md-menu-item>
+                            <md-button layout-fill class="md-raised md-warn" ng-click="assem.excluirParticipante($event, participante)">
+                              <md-icon>
+                                <i class="material-icons">delete_forever</i>
+                              </md-icon>
+                              Excluir
+                            </md-button>
+                          </md-menu-item>
+                        </md-menu-content>
+                      </md-menu>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'} " md-limit="assem.option.limite" md-limit-options="[5, 10, 15] " md-page="assem.option.paginas" md-total="{{assem.participantes.length}} " md-page-select>
+              </md-table-pagination>
+            </md-table-container>
+
+          </md-card-content>
+        </md-card>
+      </md-content>
+    </md-tab>
+
+
+
     <md-tab label="Participantes">
       <md-content layout-padding>
 
@@ -317,5 +403,8 @@
 
       </md-content>
     </md-tab>
+
+
+
   </md-tabs>
 </md-content>
