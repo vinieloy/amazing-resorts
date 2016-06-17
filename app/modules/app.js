@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngMaterial', 'ui.router', 'md.data.table', 'chart.js']);
+var app = angular.module('app', ['ngMaterial', 'ui.router', 'md.data.table', 'chart.js', 'ngMask']);
 
 app.config(function name($mdThemingProvider) {
 

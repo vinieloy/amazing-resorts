@@ -32,8 +32,8 @@
         <form name=" formLogin" class="formLogin" novalidate>
           <md-card-content>
             <md-input-container class="md-block">
-              <label>CPF</label>
-              <input type="text" name="cpf" ng-model="lg.cpf" md-maxlength="11" required>
+              <label>Usuário</label>
+              <input type="text" name="cpf" ng-model="lg.cpf" mask='999.999.999-99' required>
             </md-input-container>
             <md-input-container class="md-block">
               <label>Senha</label>
@@ -55,7 +55,7 @@
   <script src="src/js/angular-messages.min.js "></script>
   <script src="src/js/angular-resource.min.js "></script>
   <script src="src/js/angular-material.min.js "></script>
-
+  <script src="src/js/ngMask.min.js"></script>
   <script src="modules/app.login.js "></script>
   <script src="services/acessoService.js "></script>
   <script src="controller/loginCtrl.js "></script>

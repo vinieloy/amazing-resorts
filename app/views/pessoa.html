@@ -2,9 +2,9 @@
   <md-tabs md-dynamic-height md-stretch-tabs="always" md-whiteframe="4" md-selected="ps.selectedIndex" class="md-primary">
     <md-tab label="Buscar" md-whiteframe="4">
       <md-content layout-padding>
-        
-        
-        <md-card md-whiteframe="2"  ng-if="ps.isMorador">
+
+
+        <md-card md-whiteframe="2" ng-if="ps.isMorador">
 
           <md-card-title>
             <!--busca-->
@@ -86,8 +86,8 @@
 
           </md-card-content>
         </md-card>
-        
-         <md-card md-whiteframe="2"  ng-if="ps.isFuncionario">
+
+        <md-card md-whiteframe="2" ng-if="ps.isFuncionario">
 
           <md-card-title>
             <!--busca-->
@@ -169,9 +169,9 @@
 
           </md-card-content>
         </md-card>
-        
-        
-        
+
+
+
       </md-content>
     </md-tab>
 
@@ -203,17 +203,17 @@
                   </md-input-container>
                 </div>
 
-                
-                  <md-input-container flex>
-                    <label>Nome</label>
-                    <input type="text" ng-model="ps.formPessoa.pessoa.nome" required>
-                  </md-input-container>
-                
+
+                <md-input-container flex>
+                  <label>Nome</label>
+                  <input type="text" ng-model="ps.formPessoa.pessoa.nome" required>
+                </md-input-container>
+
 
                 <div layout="row">
                   <md-input-container flex>
                     <label>CPF</label>
-                    <input type="text" ng-model="ps.formPessoa.pessoa.cpf" required>
+                    <input type="text" ng-model="ps.formPessoa.pessoa.cpf" mask="999.999.999-99" required>
                   </md-input-container>
                   <md-input-container flex>
                     <label>Email</label>
@@ -221,7 +221,7 @@
                   </md-input-container>
                   <md-input-container flex>
                     <label>RG</label>
-                    <input type="text" ng-model="ps.formPessoa.pessoa.rg" required>
+                    <input type="text" ng-model="ps.formPessoa.pessoa.rg" mask="99.999.999-9" required>
                   </md-input-container>
                 </div>
                 <div layout="row">
@@ -244,52 +244,52 @@
 
           <!--funcionario-->
           <md-card md-whiteframe="2" ng-if="ps.isFuncionario">
-            
-            <md-card md-whiteframe="2">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">Dados pessoais</span>
-              </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-              <div layout="column">
-                <md-input-container flex>
-                  <label>Nome</label>
-                  <input type="text" ng-model="ps.formPessoa.nome" required>
-                </md-input-container>
 
-                <div layout="row">
+            <md-card md-whiteframe="2">
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">Dados pessoais</span>
+                </md-card-title-text>
+              </md-card-title>
+              <md-card-content>
+                <div layout="column">
                   <md-input-container flex>
-                    <label>CPF</label>
-                    <input type="text" ng-model="ps.formPessoa.cpf" required>
+                    <label>Nome</label>
+                    <input type="text" ng-model="ps.formPessoa.nome" required>
                   </md-input-container>
-                  <md-input-container flex>
-                    <label>Email</label>
-                    <input type="email" ng-model="ps.formPessoa.email">
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>RG</label>
-                    <input type="text" ng-model="ps.formPessoa.rg" required>
-                  </md-input-container>
+
+                  <div layout="row">
+                    <md-input-container flex>
+                      <label>CPF</label>
+                      <input type="text" ng-model="ps.formPessoa.cpf" mask="999.999.999-99" required>
+                    </md-input-container>
+                    <md-input-container flex>
+                      <label>Email</label>
+                      <input type="email" ng-model="ps.formPessoa.email">
+                    </md-input-container>
+                    <md-input-container flex>
+                      <label>RG</label>
+                      <input type="text" ng-model="ps.formPessoa.rg" mask="99.999.999-99" required>
+                    </md-input-container>
+                  </div>
+                  <div layout="row">
+                    <md-input-container flex>
+                      <label>Tel. Celular</label>
+                      <input type="tel" ng-model="ps.formPessoa.telCelular">
+                    </md-input-container>
+                    <md-input-container flex>
+                      <label>Tel. Fixo</label>
+                      <input type="tel" ng-model="ps.formPessoa.telFixo">
+                    </md-input-container>
+                    <md-input-container flex>
+                      <label>Tel. Trabalho</label>
+                      <input type="tel" ng-model="ps.formPessoa.telTrabalho">
+                    </md-input-container>
+                  </div>
                 </div>
-                <div layout="row">
-                  <md-input-container flex>
-                    <label>Tel. Celular</label>
-                    <input type="tel" ng-model="ps.formPessoa.telCelular">
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>Tel. Fixo</label>
-                    <input type="tel" ng-model="ps.formPessoa.telFixo">
-                  </md-input-container>
-                  <md-input-container flex>
-                    <label>Tel. Trabalho</label>
-                    <input type="tel" ng-model="ps.formPessoa.telTrabalho">
-                  </md-input-container>
-                </div>
-              </div>
-            </md-card-content>
-          </md-card>
-            
+              </md-card-content>
+            </md-card>
+
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">Informações trabalhistas</span>
@@ -325,7 +325,7 @@
             </md-card-content>
           </md-card>
 
-          <md-card md-whiteframe="2"  ng-if="ps.isMorador">
+          <md-card md-whiteframe="2" ng-if="ps.isMorador">
             <md-card-content>
               <div>
                 <md-checkbox ng-model="ps.formPessoa.pessoa.ativo">Ativo</md-checkbox>
@@ -342,8 +342,8 @@
               </md-input-container>
             </md-card-content>
           </md-card>
-          
-          <md-card md-whiteframe="2"  ng-if="ps.isFuncionario">
+
+          <md-card md-whiteframe="2" ng-if="ps.isFuncionario">
             <md-card-content>
               <div>
                 <md-checkbox ng-model="ps.formPessoa.ativo">Ativo</md-checkbox>
@@ -360,19 +360,19 @@
               </md-input-container>
             </md-card-content>
           </md-card>
-          
-          <div layout="row" layout-align="end end"  ng-if="ps.isMorador">
+
+          <div layout="row" layout-align="end end" ng-if="ps.isMorador">
             <md-button class="md-raised" ng-click="ps.limpar($event)">Limpar</md-button>
             <md-button class="md-raised md-warn" ng-disabled="ps.formPessoa.pessoa.id==null" ng-click="ps.excluir($event, ps.formPessoa)">Excluir</md-button>
             <md-button class="md-raised md-primary" ng-disabled="!formPessoa.$valid" ng-click="ps.salvar($event, ps.formPessoa)">Salvar</md-button>
           </div>
-          
-          <div layout="row" layout-align="end end"  ng-if="ps.isFuncionario">
+
+          <div layout="row" layout-align="end end" ng-if="ps.isFuncionario">
             <md-button class="md-raised" ng-click="ps.limpar($event)">Limpar</md-button>
             <md-button class="md-raised md-warn" ng-disabled="ps.formPessoa.id==null" ng-click="ps.excluir($event, ps.formPessoa)">Excluir</md-button>
             <md-button class="md-raised md-primary" ng-disabled="!formPessoa.$valid" ng-click="ps.salvar($event, ps.formPessoa)">Salvar</md-button>
           </div>
-          
+
         </form>
 
       </md-content>
