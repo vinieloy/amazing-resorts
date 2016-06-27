@@ -55,7 +55,10 @@ app.constant("Api", {
     "CriarComentario": "http://localhost:58773/api/Comentario/CriarComentario/",
     "ExcluirComentario": "http://localhost:58773/api/Comentario/ExcluirComentario/",
 
+    "RelatoriosDoughnut" : "",
+    "RelatoriosDoughnut2" : "",
     "RelatoriosPie": "http://localhost:58773/api/Relatorio/QuantidadeMorador/",
+    "RelatoriosPie2": "",
     "RelatoriosBar": "http://localhost:58773/api/Relatorio/QuantidadeFuncionario/",
-
+    "RelatoriosTabela" : ""
 });
