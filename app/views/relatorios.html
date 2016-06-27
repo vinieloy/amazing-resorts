@@ -3,14 +3,20 @@
     <md-input-container class="md-block">
         <label>Tipos de relatórios</label>
         <md-select ng-model="tipoRelatorio" ng-change="re.loadGrafico(tipoRelatorio)">
+            <md-option value="doughnut">Quantidade Funcionários Ativos</md-option>
+            <md-option value="doughnut2">doughnut2</md-option>
             <md-option value="pie">Quantidade Moradores Ativos</md-option>
-            <md-option value="bar">Quantidade Funcionários Ativos</md-option>
+            <md-option value="pie2">pie2</md-option>
+            <md-option value="bar">bar</md-option>
+            <md-option value="tabela">tabela</md-option>
         </md-select>
     </md-input-container>
 
     <div layout-padding flex>
-        <!--<canvas ng-if="tipoRelatorio === 'bar'" id="bar" class="chart chart-bar" chart-data="re.data" chart-labels="re.labels" chart-series="re.series" chart-legend="true"></canvas>-->
-        <canvas ng-if="tipoRelatorio === 'bar'" id="doughnut" class="chart chart-doughnut" chart-data="re.data" chart-labels="re.labels" chart-legend="true"></canvas>
-        <canvas ng-if="tipoRelatorio === 'pie'" id="pie" class="chart chart-pie" chart-data="re.data2" chart-labels="re.labels2" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'doughnut'" id="doughnut" class="chart chart-doughnut" chart-data="re.data" chart-labels="re.labels" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'doughnut2'" id="doughnut" class="chart chart-doughnut" chart-data="re.dataDoug" chart-labels="re.labelsDoug" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'pie'" id="pie" class="chart chart-pie" chart-data="re.data" chart-labels="re.labels" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'pie2'" id="pi2e" class="chart chart-pie" chart-data="re.data2" chart-labels="re.labels2" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'bar'" id="bar" class="chart chart-bar"  chart-data="re.dataBar" chart-labels="re.labelsBar"> chart-series="series"</canvas>
     </div>
 </md-content>
