@@ -56,6 +56,10 @@ app.constant("Api", {
     "ExcluirComentario": "http://amazingresort.somee.com/api/Comentario/ExcluirComentario/",
 
     "RelatoriosPie": "http://amazingresort.somee.com/api/Relatorio/QuantidadeMorador/",
-    "RelatoriosBar": "http://amazingresort.somee.com/api/Relatorio/QuantidadeFuncionario/",
-
+    "RelatoriosPie2": "http://amazingresort.somee.com/api/Relatorio/QuantidadeMoradorFuncionario/",
+    "RelatoriosDoughnut" : "http://amazingresort.somee.com/api/Relatorio/QuantidadeFuncionario/",
+    "RelatoriosDoughnut2" : "http://amazingresort.somee.com/api/Relatorio/QuantidadeImovelComSemMorador/",
+    // "RelatoriosBar": "",
+    "RelatoriosTabela" : "http://amazingresort.somee.com/api/Relatorio/QuantidadeTopicoComentario/",
+    "RelatoriosTabela2" : "http://amazingresort.somee.com/api/Relatorio/QuantidadeImovelMorador/"
 });

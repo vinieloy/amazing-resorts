@@ -3,14 +3,64 @@
     <md-input-container class="md-block">
         <label>Tipos de relatórios</label>
         <md-select ng-model="tipoRelatorio" ng-change="re.loadGrafico(tipoRelatorio)">
+            <md-option value="doughnut">Quantidade Funcionários Ativos</md-option>
+            <md-option value="doughnut2">Quantidade de Moradores e Funcionários</md-option>
             <md-option value="pie">Quantidade Moradores Ativos</md-option>
-            <md-option value="bar">Quantidade Funcionários Ativos</md-option>
+            <md-option value="pie2">Quantidade de Imóvel com e sem morador</md-option>
+            <!--<md-option value="bar">bar</md-option>-->
+            <md-option value="tabela">Quantidade de Comentários por Tópicos</md-option>
+            <md-option value="tabela2">Lista de todos os imóveis</md-option>
         </md-select>
     </md-input-container>
 
     <div layout-padding flex>
-        <!--<canvas ng-if="tipoRelatorio === 'bar'" id="bar" class="chart chart-bar" chart-data="re.data" chart-labels="re.labels" chart-series="re.series" chart-legend="true"></canvas>-->
-        <canvas ng-if="tipoRelatorio === 'bar'" id="doughnut" class="chart chart-doughnut" chart-data="re.data" chart-labels="re.labels" chart-legend="true"></canvas>
-        <canvas ng-if="tipoRelatorio === 'pie'" id="pie" class="chart chart-pie" chart-data="re.data2" chart-labels="re.labels2" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'doughnut'" id="doughnut" class="chart chart-doughnut" chart-data="re.dataDoug" chart-labels="re.labelsDoug" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'doughnut2'" id="doughnut" class="chart chart-doughnut" chart-data="re.dataDoug2" chart-labels="re.labelsDoug2" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'pie'" id="pie" class="chart chart-pie" chart-data="re.dataPie" chart-labels="re.labelsPie" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'pie2'" id="pie2" class="chart chart-pie" chart-data="re.dataPie2" chart-labels="re.labelsPie2" chart-legend="true"></canvas>
+        <!--<canvas ng-if="tipoRelatorio === 'bar'" id="bar" class="chart chart-bar"  chart-data="re.dataBar" chart-labels="re.labelsBar"> chart-series="series"</canvas>-->
+    
+        <md-table-container ng-if="tipoRelatorio === 'tabela'">
+          <table md-table>
+            <thead class="table" md-head md-order="ordenacao">
+              <tr md-row>
+                <th md-column md-order-by="id">#</th>
+                <th md-column md-order-by="topico">Topico</th>
+                <th md-column md-order-by="quantidade">Quantidade Comentários</th>
+                <th md-column></th>
+              </tr>
+            </thead>
+
+            <tbody md-body>
+              <tr md-row ng-repeat="tabela in re.tabelas | orderBy: ordenacao | limitTo: im.option.limite: (im.option.paginas- 1) * im.option.limite | filter: busca ">
+                <td md-cell>{{tabela.id}}</td>
+                <td md-cell>{{tabela.topico}}</td>
+                <td md-cell>{{tabela.quantidadeComentarios}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+    
+         <md-table-container ng-if="tipoRelatorio === 'tabela2'">
+          <table md-table>
+            <thead class="table" md-head md-order="ordenacao">
+              <tr md-row>
+                <th md-column md-order-by="bloco">Bloco</th>
+                <th md-column md-order-by="apartamento">Apartamento</th>
+                <th md-column md-order-by="nome">Nome</th>
+                <th md-column></th>
+              </tr>
+            </thead>
+
+            <tbody md-body>
+              <tr md-row ng-repeat="tabela2 in re.tabelas2 | orderBy: ordenacao | limitTo: im.option.limite: (im.option.paginas- 1) * im.option.limite | filter: busca ">
+                <td md-cell>{{tabela2.bloco}}</td>
+                <td md-cell>{{tabela2.apartamento}}</td>
+                <td md-cell>{{tabela2.nome}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
     </div>
 </md-content>
