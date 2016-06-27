@@ -13,49 +13,49 @@ app.config(function name($mdThemingProvider) {
 
 
 app.constant("Api", {
-    "url": "http://localhost:58773/api/",
+    "url": "http://amazingresort.somee.com/api/",
 
-    "Usuario": "http://localhost:58773/api/Usuario/",
-    "ExcluirUsuario": "http://localhost:58773/api/Usuario/ExcluirPessoa/",
+    "Usuario": "http://amazingresort.somee.com/api/Usuario/",
+    "ExcluirUsuario": "http://amazingresort.somee.com/api/Usuario/ExcluirPessoa/",
 
-    "Funcionario": "http://localhost:58773/api/Funcionario/",
+    "Funcionario": "http://amazingresort.somee.com/api/Funcionario/",
 
-    "Morador": "http://localhost:58773/api/Morador/",
-    "CriarMorador": "http://localhost:58773/api/Morador/CriarMorador/",
+    "Morador": "http://amazingresort.somee.com/api/Morador/",
+    "CriarMorador": "http://amazingresort.somee.com/api/Morador/CriarMorador/",
 
-    "Imovel": "http://localhost:58773/api/Imovel/",
-    "CriarImovel": "http://localhost:58773/api/Imovel/CriarImovel/",
-    "ExcluirImovel": "http://localhost:58773/api/Imovel/ExcluirImovel/",
+    "Imovel": "http://amazingresort.somee.com/api/Imovel/",
+    "CriarImovel": "http://amazingresort.somee.com/api/Imovel/CriarImovel/",
+    "ExcluirImovel": "http://amazingresort.somee.com/api/Imovel/ExcluirImovel/",
 
-    "Veiculo": "http://localhost:58773/api/Veiculo/",
-    "CriarVeiculo": "http://localhost:58773/api/Veiculo/CriarVeiculo/",
-    "ExcluirVeiculo": "http://localhost:58773/api/Veiculo/ExcluirVeiculo/",
+    "Veiculo": "http://amazingresort.somee.com/api/Veiculo/",
+    "CriarVeiculo": "http://amazingresort.somee.com/api/Veiculo/CriarVeiculo/",
+    "ExcluirVeiculo": "http://amazingresort.somee.com/api/Veiculo/ExcluirVeiculo/",
 
-    "Servico": "http://localhost:58773/api/Servico/",
-    "CriarServico": "http://localhost:58773/api/Servico/CriarServico/",
-    "ExcluirServico": "http://localhost:58773/api/Servico/ExcluirServico/",
+    "Servico": "http://amazingresort.somee.com/api/Servico/",
+    "CriarServico": "http://amazingresort.somee.com/api/Servico/CriarServico/",
+    "ExcluirServico": "http://amazingresort.somee.com/api/Servico/ExcluirServico/",
 
-    "Assembleia": "http://localhost:58773/api/Assembleia/",
-    "CriarAssembleia": "http://localhost:58773/api/Assembleia/CriarAssembleia/",
-    "ExcluirAssembleia": "http://localhost:58773/api/Assembleia/ExcluirAssembleia/",
+    "Assembleia": "http://amazingresort.somee.com/api/Assembleia/",
+    "CriarAssembleia": "http://amazingresort.somee.com/api/Assembleia/CriarAssembleia/",
+    "ExcluirAssembleia": "http://amazingresort.somee.com/api/Assembleia/ExcluirAssembleia/",
 
-    "Ata": "http://localhost:58773/api/Ata/",
-    "CriarAta": "http://localhost:58773/api/Ata/CriarAta/",
-    "ExcluirAta": "http://localhost:58773/api/Ata/ExcluirAta/",
+    "Ata": "http://amazingresort.somee.com/api/Ata/",
+    "CriarAta": "http://amazingresort.somee.com/api/Ata/CriarAta/",
+    "ExcluirAta": "http://amazingresort.somee.com/api/Ata/ExcluirAta/",
 
-    "AtaParticipante": "http://localhost:58773/api/AtaParticipante/",
-    "CriarAtaParticipante": "http://localhost:58773/api/AtaParticipante/CriarAtaParticipante/",
-    "ExcluirAtaParticipante": "http://localhost:58773/api/AtaParticipante/ExcluirAtaParticipante/",
+    "AtaParticipante": "http://amazingresort.somee.com/api/AtaParticipante/",
+    "CriarAtaParticipante": "http://amazingresort.somee.com/api/AtaParticipante/CriarAtaParticipante/",
+    "ExcluirAtaParticipante": "http://amazingresort.somee.com/api/AtaParticipante/ExcluirAtaParticipante/",
 
-    "Topico": "http://localhost:58773/api/Topico/",
-    "CriarTopico": "http://localhost:58773/api/Topico/CriarTopico/",
-    "ExcluirTopico": "http://localhost:58773/api/Topico/ExcluirTopico/",
+    "Topico": "http://amazingresort.somee.com/api/Topico/",
+    "CriarTopico": "http://amazingresort.somee.com/api/Topico/CriarTopico/",
+    "ExcluirTopico": "http://amazingresort.somee.com/api/Topico/ExcluirTopico/",
 
-    "Comentario": "http://localhost:58773/api/Comentario/",
-    "CriarComentario": "http://localhost:58773/api/Comentario/CriarComentario/",
-    "ExcluirComentario": "http://localhost:58773/api/Comentario/ExcluirComentario/",
+    "Comentario": "http://amazingresort.somee.com/api/Comentario/",
+    "CriarComentario": "http://amazingresort.somee.com/api/Comentario/CriarComentario/",
+    "ExcluirComentario": "http://amazingresort.somee.com/api/Comentario/ExcluirComentario/",
 
-    "RelatoriosPie": "http://localhost:58773/api/Relatorio/QuantidadeMorador/",
-    "RelatoriosBar": "http://localhost:58773/api/Relatorio/QuantidadeFuncionario/",
+    "RelatoriosPie": "http://amazingresort.somee.com/api/Relatorio/QuantidadeMorador/",
+    "RelatoriosBar": "http://amazingresort.somee.com/api/Relatorio/QuantidadeFuncionario/",
 
 });
