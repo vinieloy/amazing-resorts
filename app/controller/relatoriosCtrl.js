@@ -37,7 +37,7 @@
             
             switch(tipoRelatorio){
             case (tipoRelatorio === 'doughnut'):
-                relatoriosService.doughnut().then(
+                relatoriosService.getDoughnut().then(
                     function(doughnut) {
 
                         var status = [];
@@ -52,7 +52,7 @@
                     });
                     break;
             case (tipoRelatorio === 'doughnut2'):
-                relatoriosService.doughnut2().then(
+                relatoriosService.getDoughnut2().then(
                     function(doughnut2) {
 
                         var status = [];
