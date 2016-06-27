@@ -13,10 +13,27 @@
     </md-input-container>
 
     <div layout-padding flex>
-        <canvas ng-if="tipoRelatorio === 'doughnut'" id="doughnut" class="chart chart-doughnut" chart-data="re.data" chart-labels="re.labels" chart-legend="true"></canvas>
-        <canvas ng-if="tipoRelatorio === 'doughnut2'" id="doughnut" class="chart chart-doughnut" chart-data="re.dataDoug" chart-labels="re.labelsDoug" chart-legend="true"></canvas>
-        <canvas ng-if="tipoRelatorio === 'pie'" id="pie" class="chart chart-pie" chart-data="re.data" chart-labels="re.labels" chart-legend="true"></canvas>
-        <canvas ng-if="tipoRelatorio === 'pie2'" id="pi2e" class="chart chart-pie" chart-data="re.data2" chart-labels="re.labels2" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'doughnut'" id="doughnut" class="chart chart-doughnut" chart-data="re.dataDoug" chart-labels="re.labelsDoug" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'doughnut2'" id="doughnut" class="chart chart-doughnut" chart-data="re.dataDoug2" chart-labels="re.labelsDoug2" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'pie'" id="pie" class="chart chart-pie" chart-data="re.dataPie" chart-labels="re.labelsPie" chart-legend="true"></canvas>
+        <canvas ng-if="tipoRelatorio === 'pie2'" id="pie2" class="chart chart-pie" chart-data="re.dataPie2" chart-labels="re.labelsPie2" chart-legend="true"></canvas>
         <canvas ng-if="tipoRelatorio === 'bar'" id="bar" class="chart chart-bar"  chart-data="re.dataBar" chart-labels="re.labelsBar"> chart-series="series"</canvas>
+    
+        <md-table-container ng-if="tipoRelatorio === 'tabela'">
+          <table md-table>
+            <thead class="table" md-head>
+              <tr md-row>
+                <th md-column></th>
+              </tr>
+            </thead>
+
+            <tbody md-body>
+              <tr md-row ng-repeat="">
+                <td md-cell>{{}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+    
     </div>
 </md-content>
