@@ -20,16 +20,16 @@
 
         re.labelsPie;
         re.dataPie;
-        
+
         re.labelsPie2;
         re.dataPie2;
-        
-        re.labelsDoug;
-        re.dataDoug;
-        
+
+        re.labelsDoug = [];
+        re.dataDoug = [];
+
         re.labelsDoug2;
         re.dataDoug2;
-        
+
         re.labelsBar;
         re.dataBar;
 
@@ -38,8 +38,8 @@
 
 
         re.loadGrafico = function(tipoRelatorio) {
-            
-            if (tipoRelatorio === 'doughnut'){
+
+            if (tipoRelatorio === 'doughnut') {
                 relatoriosService.getDoughnut().then(
                     function(doughnut) {
 
@@ -53,23 +53,21 @@
                         re.labelsDoug = status;
                         re.dataDoug = qtd;
                     });
-            }
-            else if (tipoRelatorio === 'doughnut2'){
+            } else if (tipoRelatorio === 'doughnut2') {
                 relatoriosService.getDoughnut2().then(
                     function(doughnut2) {
 
                         var status = [];
                         var qtd = [];
                         for (var i = 0; i < doughnut2.data.length; i++) {
-                            status.push(doughnut2.data[i].status);
+                            status.push(doughnut2.data[i].imovel);
                             qtd.push(doughnut2.data[i].quantidade);
                         };
 
                         re.labelsDoug2 = status;
                         re.dataDoug2 = qtd;
                     });
-            }
-            else if (tipoRelatorio === 'pie'){
+            } else if (tipoRelatorio === 'pie') {
                 relatoriosService.getPie().then(
                     function(pie) {
 
@@ -83,23 +81,21 @@
                         re.labelsPie = status;
                         re.dataPie = qtd;
                     });
-            }
-            else if (tipoRelatorio === 'pie2'){
+            } else if (tipoRelatorio === 'pie2') {
                 relatoriosService.getPie2().then(
                     function(pie) {
 
                         var status = [];
                         var qtd = [];
                         for (var i = 0; i < pie.data.length; i++) {
-                            status.push(pie.data[i].status);
+                            status.push(pie.data[i].pessoa);
                             qtd.push(pie.data[i].quantidade);
                         };
 
                         re.labelsPie2 = status;
                         re.dataPie2 = qtd;
                     });
-            }
-            else if (tipoRelatorio === 'bar'){
+            } else if (tipoRelatorio === 'bar') {
                 relatoriosService.getBar().then(
                     function(bar) {
 
@@ -113,20 +109,18 @@
                         re.labelsBar = status;
                         re.dataBar = qtd;
                     });
-            }
-            else if (tipoRelatorio === 'tabela'){
+            } else if (tipoRelatorio === 'tabela') {
                 relatoriosService.getTabela().then(
                     function(tabela) {
                         re.tabelas = tabela.data;
                     });
-            }
-            else if (tipoRelatorio === 'tabela2'){
+            } else if (tipoRelatorio === 'tabela2') {
                 relatoriosService.getTabela2().then(
                     function(tabela) {
                         re.tabelas2 = tabela.data;
                     });
             }
-                    
+
         }
     }
 })();

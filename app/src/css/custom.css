@@ -99,3 +99,8 @@ md-datepicker {
 .topico-padding {
   padding-top: 80px;
 }
+
+md-tab-item.md-tab.ng-scope.ng-isolate-scope.md-ink-ripple {
+  margin-left: -26px;
+  font-size: small;
+}
